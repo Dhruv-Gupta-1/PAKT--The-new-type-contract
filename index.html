@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <script>
+      (function() {
+        function isMetaMaskError(msg) {
+          if (!msg) return false;
+          var s = String(msg).toLowerCase();
+          return (
+            s.indexOf('metamask') !== -1 ||
+            s.indexOf('failed to connect') !== -1 ||
+            s.indexOf('inpage.js') !== -1 ||
+            s.indexOf('chrome.runtime') !== -1 ||
+            s.indexOf('user rejected') !== -1 ||
+            (s.indexOf('ethereum') !== -1 && s.indexOf('connect') !== -1)
+          );
+        }
+
+        function safelyAttachProviderErrorHandler(provider) {
+          try {
+            if (provider && typeof provider.on === 'function' && !provider.__pakt_error_handled) {
+              provider.__pakt_error_handled = true;
+              provider.on('error', function(err) {
+                console.warn('[PAKT Web3 Resilience] Caught provider error event:', err && (err.message || err));
+              });
+            }
+          } catch (e) {}
+        }
+
+        // Attach immediately if provider already present
+        if (typeof window !== 'undefined') {
+          if (window.ethereum) {
+            safelyAttachProviderErrorHandler(window.ethereum);
+          }
+          window.addEventListener('ethereum#initialized', function() {
+            if (window.ethereum) {
+              safelyAttachProviderErrorHandler(window.ethereum);
+            }
+          }, { once: true });
+
+          // Window.onerror capture
+          var oldOnError = window.onerror;
+          window.onerror = function(message, source, lineno, colno, error) {
+            var fullStr = String(message || '') + ' ' + String(source || '') + ' ' + String(error && (error.message || error.stack) || '');
+            if (isMetaMaskError(fullStr)) {
+              console.warn('[PAKT Web3 Resilience] Intercepted window.onerror:', fullStr);
+              return true; // Prevents default error firing and stops browser error reporting
+            }
+            if (typeof oldOnError === 'function') {
+              return oldOnError.apply(this, arguments);
+            }
+            return false;
+          };
+
+          // Window error event in capture phase
+          window.addEventListener('error', function(event) {
+            var msg = event.message || '';
+            var filename = event.filename || '';
+            var errStr = event.error ? (event.error.message || String(event.error)) : '';
+            var combined = msg + ' ' + filename + ' ' + errStr;
+            if (isMetaMaskError(combined)) {
+              event.preventDefault();
+              if (typeof event.stopImmediatePropagation === 'function') {
+                event.stopImmediatePropagation();
+              }
+              console.warn('[PAKT Web3 Resilience] Suppressed injected extension error event:', combined);
+            }
+          }, true);
+
+          // Window unhandledrejection in capture phase
+          window.addEventListener('unhandledrejection', function(event) {
+            var reason = event.reason;
+            var msg = '';
+            if (typeof reason === 'string') {
+              msg = reason;
+            } else if (reason && typeof reason === 'object') {
+              msg = reason.message || reason.stack || String(reason);
+            }
+            if (isMetaMaskError(msg)) {
+              event.preventDefault();
+              if (typeof event.stopImmediatePropagation === 'function') {
+                event.stopImmediatePropagation();
+              }
+              console.warn('[PAKT Web3 Resilience] Handled extension promise rejection:', msg);
+            }
+          }, true);
+        }
+      })();
+    </script>
+    <title>PAKT Web 2.5</title>
+    <meta name="description" content="Decentralized legal contract execution, on-chain verification, and AI Copilot for Indian IT Act 2000 and DPDP Act 2023 compliance on Polygon PoS." />
+    <meta property="og:title" content="PAKT Web 2.5" />
+    <meta property="og:description" content="Decentralized legal contract execution, on-chain verification, and AI Copilot for Indian IT Act 2000 and DPDP Act 2023 compliance on Polygon PoS." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  </head>
+  <body class="bg-[#f7f9fb] text-[#191c1e] antialiased selection:bg-[#ac2e00] selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

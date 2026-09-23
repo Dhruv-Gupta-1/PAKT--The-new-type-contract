@@ -1,0 +1,6 @@
+{
+  "name": "PAKT Web 2.5",
+  "description": "Decentralized legal contract execution, on-chain verification, and AI Copilot for Indian IT Act 2000 and DPDP Act 2023 compliance on Polygon PoS.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
