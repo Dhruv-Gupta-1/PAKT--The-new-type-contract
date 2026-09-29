@@ -8,7 +8,8 @@ export type ScreenType =
   | 'verify' 
   | 'settings'
   | 'notifications'
-  | 'new-agreement';
+  | 'new-agreement'
+  | 'profile';
 
 export type Language = 'EN' | 'HI';
 
@@ -201,5 +202,13 @@ export interface UserProfile {
   avatarUrl: string;
   kycLevel: string;
   jurisdiction: string;
+  entityType?: string;
+  idType?: string;
+  idNumber?: string;
+  digitalSignatureData?: string;
+  sepoliaAddress?: string;
+  walletAddress?: string;
+  syncedWithSupabase?: boolean;
+  lastSyncedAt?: string;
 }
 

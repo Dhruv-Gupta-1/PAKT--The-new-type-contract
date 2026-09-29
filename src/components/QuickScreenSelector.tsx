@@ -15,10 +15,12 @@ export const QuickScreenSelector: React.FC<QuickScreenSelectorProps> = ({ curren
     { id: 'login', labelEn: '2. Login Credentials', labelHi: '२. लॉगिन क्रेडेंशियल', tag: 'Auth' },
     { id: '2fa', labelEn: '3. 2FA Verification', labelHi: '३. २एफए सत्यापन', tag: 'TOTP' },
     { id: 'contracts', labelEn: '4. Contracts Vault', labelHi: '४. अनुबंध वॉल्ट', tag: 'Pipeline' },
-    { id: 'esign', labelEn: '5. Execution & eSign', labelHi: '५. निष्पादन व हस्ताक्षर', tag: 'IT Act' },
-    { id: 'copilot', labelEn: '6. AI Copilot', labelHi: '६. एआई विधिक साथी', tag: 'Analysis' },
-    { id: 'verify', labelEn: '7. Verify Terminal', labelHi: '७. सत्यापन टर्मिनल', tag: 'Polygon' },
-    { id: 'settings', labelEn: '8. Settings & Profile', labelHi: '८. सेटिंग्स एवं प्रोफ़ाइल', tag: 'Config' }
+    { id: 'new-agreement', labelEn: '5. New Agreement', labelHi: '५. नया अनुबंध', tag: 'Drafting' },
+    { id: 'esign', labelEn: '6. Execution & eSign', labelHi: '६. निष्पादन व हस्ताक्षर', tag: 'Sepolia' },
+    { id: 'copilot', labelEn: '7. AI Copilot', labelHi: '७. एआई विधिक साथी', tag: 'Analysis' },
+    { id: 'verify', labelEn: '8. Verify Terminal', labelHi: '८. सत्यापन टर्मिनल', tag: 'Ethereum' },
+    { id: 'profile', labelEn: '9. Real Identity & Supabase', labelHi: '९. विधिक पहचान एवं सुपरबेस', tag: 'Supabase' },
+    { id: 'settings', labelEn: '10. Settings & Config', labelHi: '१०. सेटिंग्स एवं प्रोफ़ाइल', tag: 'Config' }
   ];
 
   return (

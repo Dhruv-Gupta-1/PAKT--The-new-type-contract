@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ScreenType, Language, ContractLanguage, ContractItem, ContractClause, Signer, AuditHistoryEvent } from '../../types';
 import { useLoading } from '../../context/LoadingContext';
+import { syncAgreementToSupabase } from '../../services/supabaseService';
 
 interface NewAgreementScreenProps {
   onNavigate: (screen: ScreenType) => void;
@@ -513,7 +514,8 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
       partiesHindi: `पाक्त इंडिया टेक लैब्स एलएलपी एवं ${counterparty || 'साझेदार'}`,
       partiesHinglish: `PAKT India Tech Labs LLP aur ${counterparty || 'Partner Org'}`,
       sha256: simulatedSha,
-      polygonTx: polygonAnchorEnabled ? 'Polygon PoS Testnet: Pending Anchor' : undefined,
+      evmAnchor: 'Ethereum Sepolia Testnet (11155111)',
+      polygonTx: polygonAnchorEnabled ? 'Ethereum Sepolia: Pending Attestation Anchor' : undefined,
       blockNumber: polygonAnchorEnabled ? '#64,129,000 (Queued)' : undefined,
       stampDuty: stampDutyChoice,
       remuneration: remuneration || 'Consideration as per terms',
@@ -554,7 +556,12 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
         sec65BEnabled ? 'धारा ६५ख इलेक्ट्रॉनिक साक्ष्य मेटाडेटा संलग्न किया गया...' : 'अनुबंध एनवेलप तैयार किया जा रहा है...',
         'अनुबंध सफलतापूर्वक तैयार! ई-साइन कक्ष खुल रहा है...',
       ],
-      onComplete: () => {
+      onComplete: async () => {
+        try {
+          await syncAgreementToSupabase(newContract);
+        } catch (err) {
+          console.warn('Supabase sync warning:', err);
+        }
         onCreateContract(newContract, true);
       },
     });
@@ -564,12 +571,17 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
     const newContract = generateContractItem(true);
 
     showLoading({
-      titleEn: 'Saving Agreement Draft',
+      titleEn: 'Saving Agreement Draft to Supabase',
       titleHi: 'अनुबंध प्रारूप सहेजा जा रहा है',
-      subtitleEn: 'Saving to your contracts list for review and editing...',
+      subtitleEn: 'Saving to Supabase and your contracts list for review and editing...',
       subtitleHi: 'समीक्षा एवं संपादन के लिए अनुबंध सूची में सहेजा जा रहा है...',
       duration: 1200,
-      onComplete: () => {
+      onComplete: async () => {
+        try {
+          await syncAgreementToSupabase(newContract);
+        } catch (err) {
+          console.warn('Supabase sync warning:', err);
+        }
         onCreateContract(newContract, false);
       },
     });

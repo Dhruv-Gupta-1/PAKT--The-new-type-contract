@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScreenType, Language, ContractLanguage, ContractItem, ContractClause, AuditHistoryEvent, AppNotification, UserProfile } from './types';
 import { INITIAL_CONTRACTS, INITIAL_NOTIFICATIONS, INITIAL_USER_PROFILE } from './data/mockData';
 import { Header } from './components/Header';
@@ -19,8 +19,14 @@ import { VerifyScreen } from './components/screens/VerifyScreen';
 import { SettingsScreen } from './components/screens/SettingsScreen';
 import { NotificationsScreen } from './components/screens/NotificationsScreen';
 import { NewAgreementScreen } from './components/screens/NewAgreementScreen';
+import { UserDetailsScreen } from './components/screens/UserDetailsScreen';
 import { SupportBotModal } from './components/modals/SupportBotModal';
 import { LoadingProvider } from './context/LoadingContext';
+import { 
+  fetchAgreementsFromSupabase, 
+  syncAgreementToSupabase, 
+  fetchUserProfileFromSupabase 
+} from './services/supabaseService';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<ScreenType>('landing');
@@ -33,6 +39,26 @@ export default function App() {
   const [userProfile, setUserProfile] = useState<UserProfile>(INITIAL_USER_PROFILE);
 
   const unreadCount = notifications.filter(n => !n.isRead).length;
+
+  // Load contracts and user details from Supabase
+  useEffect(() => {
+    async function initSupabase() {
+      try {
+        const dbAgreements = await fetchAgreementsFromSupabase();
+        if (dbAgreements && dbAgreements.length > 0) {
+          setContracts(dbAgreements);
+          setActiveContractForESign(dbAgreements[0]);
+        }
+        const dbProfile = await fetchUserProfileFromSupabase(userProfile.walletAddress || userProfile.email);
+        if (dbProfile) {
+          setUserProfile(prev => ({ ...prev, ...dbProfile }));
+        }
+      } catch (err) {
+        console.warn('Initial Supabase fetch skipped:', err);
+      }
+    }
+    initSupabase();
+  }, []);
 
   const handleAddClause = (contractId: string, clause: ContractClause) => {
     setContracts(prev =>
@@ -289,8 +315,13 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleAddContract = (newContract: ContractItem) => {
+  const handleAddContract = async (newContract: ContractItem) => {
     setContracts(prev => [newContract, ...prev]);
+    try {
+      await syncAgreementToSupabase(newContract);
+    } catch (err) {
+      console.warn('Failed to sync agreement to Supabase:', err);
+    }
   };
 
   const handleOpenInESign = (contract: ContractItem) => {
@@ -413,6 +444,14 @@ export default function App() {
               onClearAll={handleClearAllNotifications}
               onSelectContractForESign={handleOpenInESign}
               contracts={contracts}
+            />
+          )}
+          {currentScreen === 'profile' && (
+            <UserDetailsScreen
+              lang={lang}
+              onNavigate={handleNavigate}
+              currentUserProfile={userProfile}
+              onProfileUpdated={handleUpdateUserProfile}
             />
           )}
         </main>

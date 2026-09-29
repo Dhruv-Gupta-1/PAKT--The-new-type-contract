@@ -523,6 +523,38 @@ Here is an enforceable consultant agreement compliant with Indian labor norms an
 - Paste any legal clause to get an **instant risk redline**!`;
 }
 
+// API endpoints for Supabase and Solidity Smart Contract
+app.get('/api/supabase/status', (_req: Request, res: Response) => {
+  const url = process.env.SUPABASE_URL || 'https://hplrpgzixwndxjoodlsl.supabase.co';
+  const hasKey = Boolean(process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_PUBLISHABLE_KEY);
+  res.json({
+    status: 'online',
+    supabaseUrl: url,
+    configured: hasKey,
+    network: 'Ethereum Sepolia (11155111)',
+  });
+});
+
+app.get('/api/contract/solidity', async (_req: Request, res: Response) => {
+  try {
+    const fs = await import('fs');
+    const contractPath = path.join(__dirname, 'contracts', 'PaktSepoliaRegistry.sol');
+    if (fs.existsSync(contractPath)) {
+      const sourceCode = fs.readFileSync(contractPath, 'utf8');
+      res.json({
+        name: 'PaktSepoliaRegistry',
+        network: 'Ethereum Sepolia',
+        chainId: 11155111,
+        sourceCode,
+      });
+      return;
+    }
+    res.status(404).json({ error: 'Solidity contract file not found' });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Development vs Production serving
 async function startServer() {
   if (process.env.NODE_ENV !== 'production') {

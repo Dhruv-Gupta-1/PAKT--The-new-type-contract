@@ -130,6 +130,19 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             type="button"
+            onClick={() => onNavigate('profile')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+              currentScreen === 'profile'
+                ? 'bg-cyan-50 text-cyan-900 shadow-xs border border-cyan-300 font-bold'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <span className="material-symbols-outlined text-[16px] text-cyan-600">badge</span>
+            <span>{lang === 'EN' ? 'Real Identity (Supabase)' : 'विधिक पहचान'}</span>
+          </button>
+
+          <button
+            type="button"
             onClick={() => onNavigate('settings')}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
               currentScreen === 'settings'
