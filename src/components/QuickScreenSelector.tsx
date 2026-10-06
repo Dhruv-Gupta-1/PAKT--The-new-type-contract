@@ -13,14 +13,16 @@ export const QuickScreenSelector: React.FC<QuickScreenSelectorProps> = ({ curren
   const screens: { id: ScreenType; labelEn: string; labelHi: string; tag: string }[] = [
     { id: 'landing', labelEn: '1. Welcome Splash', labelHi: '१. स्वागत स्क्रीन', tag: 'Web 2.5' },
     { id: 'login', labelEn: '2. Login Credentials', labelHi: '२. लॉगिन क्रेडेंशियल', tag: 'Auth' },
-    { id: '2fa', labelEn: '3. 2FA Verification', labelHi: '३. २एफए सत्यापन', tag: 'TOTP' },
-    { id: 'contracts', labelEn: '4. Contracts Vault', labelHi: '४. अनुबंध वॉल्ट', tag: 'Pipeline' },
-    { id: 'new-agreement', labelEn: '5. New Agreement', labelHi: '५. नया अनुबंध', tag: 'Drafting' },
-    { id: 'esign', labelEn: '6. Execution & eSign', labelHi: '६. निष्पादन व हस्ताक्षर', tag: 'Sepolia' },
-    { id: 'copilot', labelEn: '7. AI Copilot', labelHi: '७. एआई विधिक साथी', tag: 'Analysis' },
-    { id: 'verify', labelEn: '8. Verify Terminal', labelHi: '८. सत्यापन टर्मिनल', tag: 'Ethereum' },
-    { id: 'profile', labelEn: '9. Real Identity & Supabase', labelHi: '९. विधिक पहचान एवं सुपरबेस', tag: 'Supabase' },
-    { id: 'settings', labelEn: '10. Settings & Config', labelHi: '१०. सेटिंग्स एवं प्रोफ़ाइल', tag: 'Config' }
+    { id: 'signup', labelEn: '3. Create Account', labelHi: '३. नया खाता बनाएं', tag: 'Supabase' },
+    { id: 'feature-building', labelEn: '4. Biometric (Building)', labelHi: '४. बायोमेट्रिक (निर्माणाधीन)', tag: 'Dev' },
+    { id: '2fa', labelEn: '5. 2FA Verification', labelHi: '५. २एफए सत्यापन', tag: 'TOTP' },
+    { id: 'contracts', labelEn: '6. Contracts Vault', labelHi: '६. अनुबंध वॉल्ट', tag: 'Pipeline' },
+    { id: 'new-agreement', labelEn: '7. New Agreement', labelHi: '७. नया अनुबंध', tag: 'Drafting' },
+    { id: 'esign', labelEn: '8. Execution & eSign', labelHi: '८. निष्पादन व हस्ताक्षर', tag: 'Sepolia' },
+    { id: 'copilot', labelEn: '9. AI Copilot', labelHi: '९. एआई विधिक साथी', tag: 'Analysis' },
+    { id: 'verify', labelEn: '10. Verify Terminal', labelHi: '१०. सत्यापन टर्मिनल', tag: 'Ethereum' },
+    { id: 'profile', labelEn: '11. Real Identity & Supabase', labelHi: '११. विधिक पहचान एवं सुपरबेस', tag: 'Supabase' },
+    { id: 'settings', labelEn: '12. Settings & Config', labelHi: '१२. सेटिंग्स एवं प्रोफ़ाइल', tag: 'Config' }
   ];
 
   return (
@@ -34,7 +36,7 @@ export const QuickScreenSelector: React.FC<QuickScreenSelectorProps> = ({ curren
           <span>
             {currentScreen === 'notifications'
               ? (lang === 'HI' ? 'सूचनाएं (अलर्ट)' : 'Alerts (Inbox)')
-              : `${lang === 'HI' ? 'स्क्रीन' : 'Screens'} (${screens.findIndex(s => s.id === currentScreen) + 1}/8)`}
+              : `${lang === 'HI' ? 'स्क्रीन' : 'Screens'} (${screens.findIndex(s => s.id === currentScreen) + 1}/${screens.length})`}
           </span>
           <span className="material-symbols-outlined text-[14px]">
             {isOpen ? 'expand_less' : 'expand_more'}

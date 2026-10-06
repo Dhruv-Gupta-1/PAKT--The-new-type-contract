@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS public.user_profiles (
     full_name TEXT NOT NULL,
     email TEXT,
     phone TEXT,
-    entity_type TEXT DEFAULT 'Individual', -- Individual, Pvt Ltd, LLP, Freelancer, Enterprise
-    id_type TEXT DEFAULT 'PAN',           -- PAN, Aadhaar, Passport, GSTIN, National ID
+    entity_type TEXT DEFAULT 'Individual', -- Individual, Enterprise, LLC, Freelancer
+    id_type TEXT DEFAULT 'Government ID', -- Government ID, Tax ID, Passport, National ID
     id_number TEXT,
     role TEXT DEFAULT 'Signatory',        -- Director, Signatory, Legal Counsel, Founder
     digital_signature_data TEXT,         -- Base64 signature image or canvas SVG
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS public.agreements (
     category TEXT NOT NULL,               -- saas, employment, shareholder, nda
     status TEXT DEFAULT 'pending_signature', -- pending_signature, executed, in_review
     parties JSONB NOT NULL DEFAULT '[]'::jsonb,
-    jurisdiction TEXT DEFAULT 'Mumbai, Republic of India',
+    jurisdiction TEXT DEFAULT 'Global Commercial Arbitration Jurisdiction',
     stamp_duty TEXT,
     summary TEXT,
     sha256 TEXT NOT NULL,                 -- Canonical cryptographic hash

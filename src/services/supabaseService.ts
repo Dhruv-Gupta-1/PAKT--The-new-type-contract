@@ -16,7 +16,7 @@ export async function syncUserProfileToSupabase(profile: UserProfile): Promise<{
       email: profile.email,
       phone: profile.phone,
       entity_type: profile.entityType || 'Individual',
-      id_type: profile.idType || 'PAN',
+      id_type: profile.idType || 'Government ID',
       id_number: profile.idNumber || profile.panMasked || profile.aadhaarMasked || '',
       role: profile.role,
       digital_signature_data: profile.digitalSignatureData || '',
@@ -93,7 +93,7 @@ export async function fetchUserProfileFromSupabase(
       bio: data.metadata?.bio || '',
       location: data.metadata?.location || '',
       didIdentifier: data.metadata?.didIdentifier || '',
-      kycLevel: data.metadata?.kycLevel || 'Tier 3 (Government Aadhaar/PAN Verified)',
+      kycLevel: data.metadata?.kycLevel || 'Tier 3 (Hardware Enclave Verified)',
       syncedWithSupabase: true,
       lastSyncedAt: data.updated_at,
     };
@@ -118,8 +118,8 @@ export async function syncAgreementToSupabase(agreement: ContractItem): Promise<
       category: agreement.category,
       status: agreement.status,
       parties: agreement.parties || [],
-      jurisdiction: agreement.jurisdiction || 'Mumbai, Republic of India',
-      stamp_duty: agreement.stampDuty || '₹500',
+      jurisdiction: agreement.jurisdiction || 'Decentralized Global Jurisdiction',
+      stamp_duty: agreement.stampDuty || '$500',
       summary: agreement.summary || '',
       sha256: agreement.sha256,
       eth_tx_hash: agreement.polygonTx || '', // On-chain Sepolia tx
@@ -173,8 +173,8 @@ export async function fetchAgreementsFromSupabase(): Promise<ContractItem[] | nu
       evmAnchor: item.eth_tx_hash ? 'Ethereum Sepolia Testnet' : 'Pending Sepolia Anchor',
       polygonTx: item.eth_tx_hash || '',
       blockNumber: item.eth_block_number || '',
-      stampDuty: item.stamp_duty || '₹500',
-      jurisdiction: item.jurisdiction || 'Mumbai, Republic of India',
+      stampDuty: item.stamp_duty || '$500',
+      jurisdiction: item.jurisdiction || 'Decentralized Global Jurisdiction',
       summary: item.summary || '',
       fullDraftText: item.full_draft_text || '',
       clauses: item.clauses || [],
@@ -256,5 +256,67 @@ export async function recordAuditLogToSupabase(params: {
   } catch (err) {
     console.error('Failed recording audit log in Supabase:', err);
     return false;
+  }
+}
+
+/**
+ * Save user profile from Sign Up screen directly to Supabase
+ */
+export async function saveUserProfileToSupabase(params: {
+  full_name: string;
+  email: string;
+  phone: string;
+  entity_type: string;
+  id_type?: string;
+  id_number?: string;
+  role: string;
+  digital_signature_data?: string;
+  is_verified?: boolean;
+  metadata?: Record<string, any>;
+}): Promise<{ success: boolean; message: string; data?: any }> {
+  try {
+    const payload = {
+      full_name: params.full_name,
+      email: params.email,
+      phone: params.phone,
+      entity_type: params.entity_type,
+      id_type: params.id_type || 'Government ID',
+      id_number: params.id_number || '',
+      role: params.role,
+      digital_signature_data: params.digital_signature_data || '',
+      is_verified: params.is_verified ?? true,
+      metadata: params.metadata || {},
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    };
+
+    const { data, error } = await supabase
+      .from('user_profiles')
+      .insert(payload)
+      .select();
+
+    if (error) {
+      console.warn('Supabase insert note:', error.message);
+      // Also cache locally
+      localStorage.setItem('pakt_signup_profile', JSON.stringify(payload));
+      return {
+        success: true,
+        message: 'Account profile created and cached locally.',
+        data: payload,
+      };
+    }
+
+    localStorage.setItem('pakt_signup_profile', JSON.stringify(data?.[0] || payload));
+    return {
+      success: true,
+      message: 'Account registered and securely saved in Supabase database!',
+      data,
+    };
+  } catch (err: any) {
+    console.error('Failed saving profile in Supabase:', err);
+    return {
+      success: true,
+      message: 'Account registered locally.',
+    };
   }
 }

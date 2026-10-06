@@ -99,21 +99,21 @@ export const CompletedContractsVault: React.FC<CompletedContractsVaultProps> = (
     showLoading({
       titleEn: 'Archiving Agreement to Safe Vault',
       titleHi: 'अनुबंध को सुरक्षित वॉल्ट में संग्रहित किया जा रहा है',
-      subtitleEn: 'Permanently saving your signed agreement with Section 65B legal certificate...',
-      subtitleHi: 'धारा ६५ख कानूनी प्रमाणपत्र के साथ आपका हस्ताक्षरित अनुबंध सुरक्षित रूप से संग्रहित हो रहा है...',
+      subtitleEn: 'Permanently saving your signed agreement with cryptographic audit certificate...',
+      subtitleHi: 'कानूनी ऑडिट प्रमाणपत्र के साथ आपका हस्ताक्षरित अनुबंध सुरक्षित रूप से संग्रहित हो रहा है...',
       duration: 2000,
       customSteps: [
-        'Verifying digital signatures & integrity...',
-        'Confirming Section 10A IT Act legal compliance...',
-        'Recording tamper-proof timestamp on Polygon network...',
-        'Generating Section 65B Certificate of Authenticity...',
+        'Verifying digital signatures & cryptographic integrity...',
+        'Confirming decentralized smart contract compliance...',
+        'Recording tamper-proof timestamp on blockchain network...',
+        'Generating Cryptographic Certificate of Authenticity...',
         'Agreement safely stored in your vault!',
       ],
       customStepsHi: [
         'डिजिटल हस्ताक्षर एवं अखंडता का सत्यापन...',
-        'आईटी अधिनियम धारा १०क कानूनी अनुपालन की पुष्टि...',
-        'पॉलीगॉन नेटवर्क पर सुरक्षित डिजिटल समय-मुहर अंकन...',
-        'धारा ६५ख कानूनी प्रामाणिकता प्रमाणपत्र तैयार...',
+        'स्मार्ट अनुबंध नियमों के अनुपालन की पुष्टि...',
+        'ब्लॉकचेन नेटवर्क पर सुरक्षित डिजिटल समय-मुहर अंकन...',
+        'कानूनी प्रामाणिकता प्रमाणपत्र तैयार...',
         'अनुबंध वॉल्ट में सफलतापूर्वक सुरक्षित हुआ!',
       ],
       onComplete: () => {
@@ -143,7 +143,7 @@ export const CompletedContractsVault: React.FC<CompletedContractsVaultProps> = (
     // Update locally in selectedContractForDetails
     const newEvent: AuditHistoryEvent = {
       id: `h-note-${Date.now()}`,
-      timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' }) + ' IST',
+      timestamp: new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }) + ' UTC',
       titleEn: 'Historical Audit Note Appended',
       titleHi: 'ऐतिहासिक ऑडिट टिप्पणी संलग्न की गई',
       descriptionEn: noteText.trim(),
@@ -163,7 +163,7 @@ export const CompletedContractsVault: React.FC<CompletedContractsVaultProps> = (
 
   const exportVaultDossier = (contract: ContractItem) => {
     const data = {
-      vaultArchiveId: contract.vaultArchiveId || `VAULT-IN-${contract.code}`,
+      vaultArchiveId: contract.vaultArchiveId || `VAULT-GLOBAL-${contract.code}`,
       contractCode: contract.code,
       title: contract.title,
       parties: contract.parties,
@@ -175,7 +175,7 @@ export const CompletedContractsVault: React.FC<CompletedContractsVaultProps> = (
       stampDuty: contract.stampDuty,
       remuneration: contract.remuneration,
       sec65BCertificateId: contract.sec65BCertificateId,
-      statutoryFramework: 'Indian Contract Act 1872 § 10A, Information Technology Act 2000, Indian Evidence Act § 65B',
+      statutoryFramework: 'Universal Smart Contract Standards, EIP-712, Cryptographic Proof of Authenticity',
       signatories: contract.signers,
       auditHistory: contract.history,
       clauses: contract.clauses,
@@ -292,10 +292,10 @@ export const CompletedContractsVault: React.FC<CompletedContractsVaultProps> = (
             </div>
             <div className="flex items-baseline gap-2">
               <span className="text-2xl font-bold text-slate-900 font-mono tabular-nums">
-                Section 65B
+                SHA-256
               </span>
               <span className="text-xs text-slate-500">
-                {lang === 'EN' ? 'Valid in Indian Courts' : 'भारतीय न्यायालयों में मान्य'}
+                {lang === 'EN' ? 'Tamper-Evident Record' : 'अपरिवर्तनीय रिकॉर्ड'}
               </span>
             </div>
           </div>
@@ -784,34 +784,34 @@ export const CompletedContractsVault: React.FC<CompletedContractsVaultProps> = (
                   <div className="bg-[#f8f9fa] p-3.5 rounded-xl border border-[#e4beb4]/30 space-y-2">
                     <h4 className="text-[13px] font-bold text-[#191c1e] flex items-center gap-1.5">
                       <span className="material-symbols-outlined text-[16px] text-[#ac2e00]">gavel</span>
-                      <span>{lang === 'EN' ? 'Statutory Enforceability & Jurisdiction' : 'विधिक प्रवर्तनीयता एवं क्षेत्राधिकार'}</span>
+                      <span>{lang === 'EN' ? 'Agreement Enforceability & Jurisdiction' : 'अनुबंध प्रवर्तनीयता एवं क्षेत्राधिकार'}</span>
                     </h4>
                     <p className="text-[#5b4139] leading-relaxed">
                       {lang === 'EN'
-                        ? 'This electronic contract is fully enforceable in courts of India pursuant to Section 10A of the Information Technology Act 2000 and Section 10 of the Indian Contract Act 1872. Cryptographic hash anchoring fulfills requirements for conclusive evidentiary presumption.'
-                        : 'यह इलेक्ट्रॉनिक अनुबंध सूचना प्रौद्योगिकी अधिनियम २००० की धारा १०क और भारतीय अनुबंध अधिनियम १८७२ की धारा १० के तहत भारत की अदालतों में पूर्णतः प्रवर्तनीय है।'}
+                        ? 'This electronic contract is fully enforceable under international digital contract norms and electronic commerce frameworks. Cryptographic hash anchoring fulfills requirements for conclusive evidentiary presumption.'
+                        : 'यह इलेक्ट्रॉनिक अनुबंध अंतरराष्ट्रीय डिजिटल अनुबंध मानकों और इलेक्ट्रॉनिक कॉमर्स के तहत पूर्णतः प्रवर्तनीय है।'}
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     <div className="bg-white p-3 rounded-xl border border-[#e4beb4]/30 space-y-1">
                       <span className="text-[10px] font-mono text-[#5b4139] uppercase block">{lang === 'EN' ? 'Jurisdiction Seat' : 'न्यायालय क्षेत्राधिकार'}</span>
-                      <span className="font-bold text-[#191c1e] block">{activeDetailContract.jurisdiction || 'Mumbai Seat • High Court of Bombay & MCIA'}</span>
+                      <span className="font-bold text-[#191c1e] block">{activeDetailContract.jurisdiction || 'Global Arbitration Seat • International Chamber of Commerce'}</span>
                     </div>
 
                     <div className="bg-white p-3 rounded-xl border border-[#e4beb4]/30 space-y-1">
                       <span className="text-[10px] font-mono text-[#5b4139] uppercase block">{lang === 'EN' ? 'Stamp Duty Certificate' : 'ई-स्टांप शुल्क प्रमाण पत्र'}</span>
-                      <span className="font-bold text-emerald-800 block">{activeDetailContract.stampDuty || 'Maharashtra e-Challan MH-2026-9812'}</span>
+                      <span className="font-bold text-emerald-800 block">{activeDetailContract.stampDuty || 'Digital Challan VAULT-2026-9812'}</span>
                     </div>
 
                     <div className="bg-white p-3 rounded-xl border border-[#e4beb4]/30 space-y-1">
                       <span className="text-[10px] font-mono text-[#5b4139] uppercase block">{lang === 'EN' ? 'Total Consideration / Value' : 'कुल प्रतिफल राशि'}</span>
-                      <span className="font-bold text-[#ac2e00] block">{activeDetailContract.remuneration || 'Statutory Covenants'}</span>
+                      <span className="font-bold text-[#ac2e00] block">{activeDetailContract.remuneration || 'Contractual Covenants'}</span>
                     </div>
 
                     <div className="bg-white p-3 rounded-xl border border-[#e4beb4]/30 space-y-1">
                       <span className="text-[10px] font-mono text-[#5b4139] uppercase block">{lang === 'EN' ? 'Execution Mode' : 'निष्पादन विधि'}</span>
-                      <span className="font-bold text-[#191c1e] block">Class 3 DSC & Aadhaar e-Sign OTP</span>
+                      <span className="font-bold text-[#191c1e] block">Digital Certificate & Cryptographic OTP</span>
                     </div>
                   </div>
 
@@ -836,7 +836,7 @@ export const CompletedContractsVault: React.FC<CompletedContractsVaultProps> = (
                             </div>
                           </div>
                           <span className="font-mono text-[10px] bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-semibold">
-                            {signer.dscType || 'Aadhaar e-Sign OTP'}
+                            {signer.dscType || 'Cryptographic e-Sign OTP'}
                           </span>
                         </div>
                       ))}
@@ -896,8 +896,8 @@ export const CompletedContractsVault: React.FC<CompletedContractsVaultProps> = (
                     </div>
                     <p className="text-emerald-900 leading-relaxed">
                       {lang === 'EN'
-                        ? 'Under Section 85B of the Indian Evidence Act, the court presumes that the secure electronic record has not been altered since the point in time to which the secure status relates.'
-                        : 'भारतीय साक्ष्य अधिनियम की धारा ८५ख के अंतर्गत यह कानूनी धारणा मान्य है कि सुरक्षित इलेक्ट्रॉनिक रिकॉर्ड को सुरक्षित स्थिति के समय से बदला नहीं गया है।'}
+                        ? 'Under standardized digital evidence principles and consensus verification, the distributed cryptographic ledger presumes that the secure electronic record has not been altered since the point in time to which the secure status relates.'
+                        : 'मानकीकृत डिजिटल साक्ष्य सिद्धांतों एवं सर्वसम्मति सत्यापन के अंतर्गत यह प्रमाणित है कि सुरक्षित इलेक्ट्रॉनिक रिकॉर्ड को सुरक्षित स्थिति के समय से बदला नहीं गया है।'}
                     </p>
                   </div>
                 </div>
@@ -926,7 +926,7 @@ export const CompletedContractsVault: React.FC<CompletedContractsVaultProps> = (
                             Clause {clause.clauseNumber}
                           </span>
                           <span className="font-mono text-[9px] text-[#5b4139]">
-                            {isWaived ? 'WAIVED / ICA § 62' : locCl.statusText || 'Enforceable'}
+                            {isWaived ? 'MUTUALLY WAIVED' : locCl.statusText || 'Enforceable'}
                           </span>
                         </div>
 
@@ -953,19 +953,19 @@ export const CompletedContractsVault: React.FC<CompletedContractsVaultProps> = (
                 <div className="bg-[#fcfbf9] border-2 border-[#191c1e] p-4 rounded-xl text-[#191c1e] space-y-3 font-serif">
                   <div className="text-center pb-2 border-b-2 border-[#191c1e] space-y-0.5">
                     <span className="text-[10px] font-mono tracking-widest uppercase font-bold text-[#ac2e00]">
-                      GOVERNMENT OF INDIA • STATUTORY LEGAL EVIDENCE
+                      SOVEREIGN CRYPTOGRAPHIC AUDIT CERTIFICATE
                     </span>
                     <h3 className="text-[14px] font-bold uppercase tracking-tight">
-                      CERTIFICATE UNDER SECTION 65B OF THE INDIAN EVIDENCE ACT, 1872
+                      CERTIFICATE OF ELECTRONIC RECORD AUTHENTICITY
                     </h3>
                     <p className="text-[10px] text-[#5b4139] font-mono">
-                      Certificate ID: {activeDetailContract.sec65BCertificateId || 'CERT-65B-2026-08129'} • Issued at Mumbai
+                      Certificate ID: {activeDetailContract.sec65BCertificateId || 'CERT-SEC-2026-08129'} • Issued at Global Consensus Node
                     </p>
                   </div>
 
                   <p className="text-[11px] leading-relaxed">
-                    I, the designated System Custodian of <strong>PAKT Sovereign Cloud Systems (Bharat Node IN-MUM-1)</strong>,
-                    do hereby solemnly certify and affirm under Section 65B(4) of the Indian Evidence Act, 1872 that:
+                    I, the designated System Custodian of <strong>PAKT Sovereign Cloud Systems (Global Node SEPOLIA-1)</strong>,
+                    do hereby solemnly certify and affirm under recognized electronic verification principles that:
                   </p>
 
                   <ol className="list-decimal pl-4 space-y-1.5 text-[10.5px] leading-snug">
@@ -975,8 +975,8 @@ export const CompletedContractsVault: React.FC<CompletedContractsVaultProps> = (
                       ordinary course of official cryptographic operations.
                     </li>
                     <li>
-                      During the relevant period, the computing systems and Polygon Proof-of-Stake consensus state were
-                      operating properly under CERT-In and IT Act 2000 regulatory guidelines without security impairment.
+                      During the relevant period, the computing systems and Ethereum Sepolia consensus state were
+                      operating properly under strict zero-knowledge security guidelines without security impairment.
                     </li>
                     <li>
                       The information contained in this dossier constitutes true and accurate reproduction of the original
@@ -986,8 +986,8 @@ export const CompletedContractsVault: React.FC<CompletedContractsVaultProps> = (
 
                   <div className="pt-3 border-t border-gray-300 flex items-center justify-between text-[10px] font-mono">
                     <div>
-                      <span className="block font-bold">SOVEREIGN LEGAL CUSTODIAN</span>
-                      <span className="block text-gray-600">PAKT India Tech Labs LLP</span>
+                      <span className="block font-bold">SOVEREIGN PROTOCOL CUSTODIAN</span>
+                      <span className="block text-gray-600">PAKT Global Systems</span>
                     </div>
                     <div className="text-right">
                       <span className="px-2 py-1 bg-emerald-100 text-emerald-900 rounded font-bold uppercase">

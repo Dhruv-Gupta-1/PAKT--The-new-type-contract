@@ -90,13 +90,13 @@ const TEMPLATES: TemplateOption[] = [
       },
       {
         clauseNumber: '15.2',
-        title: 'Arbitration & Governing Law (Mumbai Seat)',
-        titleHindi: 'मध्यस्थता एवं लागू कानून (मुंबई सीट)',
-        titleHinglish: 'Arbitration aur Governing Law (Mumbai Seat)',
+        title: 'Arbitration & Governing Law',
+        titleHindi: 'मध्यस्थता एवं लागू कानून',
+        titleHinglish: 'Arbitration aur Governing Law',
         statusText: 'Active',
-        text: 'This agreement is governed by the laws of India. Any disputes shall be referred to arbitration under the Arbitration and Conciliation Act 1996 seated in Mumbai, Maharashtra.',
-        textHindi: 'यह अनुबंध भारत के कानूनों द्वारा शासित होगा। किसी भी विवाद का निपटारा मध्यस्थता एवं सुलह अधिनियम १९९६ के तहत मुंबई में किया जाएगा।',
-        textHinglish: 'Yeh contract Indian laws ke mutabik govern hoga aur disputes Mumbai me arbitration ke zariye settle honge.'
+        text: 'This agreement is governed by standard commercial contract principles. Any disputes shall be referred to binding arbitration under recognized international arbitration rules.',
+        textHindi: 'यह अनुबंध मानक वाणिज्यिक अनुबंध सिद्धांतों द्वारा शासित होगा। किसी भी विवाद का निपटारा अंतरराष्ट्रीय मध्यस्थता नियमों के तहत किया जाएगा।',
+        textHinglish: 'Yeh contract standard commercial contract principles ke mutabik govern hoga aur disputes arbitration ke zariye settle honge.'
       }
     ]
   },
@@ -108,12 +108,12 @@ const TEMPLATES: TemplateOption[] = [
     defaultTitleEn: 'Lead Software Architect Employment & Advisory Agreement',
     defaultTitleHi: 'वरिष्ठ सॉफ़्टवेयर वास्तुकार रोज़गार एवं सलाहकार अनुबंध',
     defaultTitleHinglish: 'Lead Software Architect Employment aur Advisory Agreement',
-    defaultCounterparty: 'Priya Sharma',
-    defaultConsideration: '₹48,00,000 CTC + ESOPs',
+    defaultCounterparty: 'Alexander Vance',
+    defaultConsideration: '$160,000 Annual + Equity',
     tagEn: 'Talent & HR',
     tagHi: 'मानव संसाधन',
-    descriptionEn: 'Full employment terms, IP assignment, confidentiality, vesting schedules, and statutory PF/gratuity benefits.',
-    descriptionHi: 'बौद्धिक संपदा हस्तांतरण, ईसॉप्स, पीएफ एवं विधिक लाभों सहित संपूर्ण नियुक्ति अनुबंध।',
+    descriptionEn: 'Full employment terms, IP assignment, confidentiality, vesting schedules, and statutory benefits.',
+    descriptionHi: 'बौद्धिक संपदा हस्तांतरण, इक्विटी एवं विधिक लाभों सहित संपूर्ण नियुक्ति अनुबंध।',
     icon: 'badge',
     color: 'blue',
     clauses: [
@@ -123,7 +123,7 @@ const TEMPLATES: TemplateOption[] = [
         titleHindi: 'पद, कर्तव्यों का दायरा एवं रिपोर्टिंग',
         titleHinglish: 'Position aur Duties ka Scope',
         statusText: 'Active',
-        text: 'Employee is appointed to the role of Lead Software Architect and shall perform all duties diligently in accordance with company policies and Indian labor regulations.',
+        text: 'Employee is appointed to the role of Lead Software Architect and shall perform all duties diligently in accordance with company policies and applicable regulations.',
         textHindi: 'कर्मचारी को लीड सॉफ़्टवेयर वास्तुकार के पद पर नियुक्त किया जाता है और वे कंपनी की नीतियों के अनुसार कर्तव्यों का निष्ठापूर्वक पालन करेंगे।',
         textHinglish: 'Employee ko Lead Software Architect appoint kiya jata hai aur woh company policies ke mutabik work karenge.'
       },
@@ -133,8 +133,8 @@ const TEMPLATES: TemplateOption[] = [
         titleHindi: 'बौद्धिक संपदा का पूर्ण हस्तांतरण',
         titleHinglish: 'Intellectual Property ka Assignment',
         statusText: 'Active',
-        text: 'All works, patents, source code, designs, and innovations developed during employment shall exclusively belong to the Employer under the Indian Copyright Act 1957.',
-        textHindi: 'रोजगार के दौरान विकसित सभी कार्य, पेटेंट, सोर्स कोड एवं नवाचार विशेष रूप से नियोक्ता की संपत्ति होंगे (भारतीय कॉपीराइट अधिनियम १९५७)।',
+        text: 'All works, patents, source code, designs, and innovations developed during employment shall exclusively belong to the Employer as proprietary intellectual property.',
+        textHindi: 'रोजगार के दौरान विकसित सभी कार्य, पेटेंट, सोर्स कोड एवं नवाचार विशेष रूप से नियोक्ता की बौद्धिक संपदा होंगे।',
         textHinglish: 'Employment ke dauran banaya gaya sabhi code aur IP exclusively employer ki property hogi.'
       },
       {
@@ -143,9 +143,9 @@ const TEMPLATES: TemplateOption[] = [
         titleHindi: 'पारिश्रमिक, ईसॉप अनुदान एवं लाभ',
         titleHinglish: 'Compensation, ESOP Grant aur Benefits',
         statusText: 'Active',
-        text: 'Employee shall receive annual CTC payable monthly, subject to statutory tax deductions (TDS), Provident Fund contributions, and standard ESOP vesting schedules.',
-        textHindi: 'कर्मचारी को वैधानिक कर कटौती (TDS) और भविष्य निधि (PF) के अधीन मासिक वेतन एवं ईसॉप वेस्टिंग अनुसूची प्राप्त होगी।',
-        textHinglish: 'Employee ko monthly salary milegi with standard TDS deductions, PF contributions aur ESOP grant.'
+        text: 'Employee shall receive annual base compensation payable monthly, subject to statutory withholdings, retirement plan contributions, and standard equity vesting schedules.',
+        textHindi: 'कर्मचारी को वैधानिक कटौतियों के अधीन मासिक वेतन एवं इक्विटी वेस्टिंग अनुसूची प्राप्त होगी।',
+        textHinglish: 'Employee ko monthly salary milegi with standard withholdings, retirement plan aur equity grant.'
       },
       {
         clauseNumber: '9.1',
@@ -153,7 +153,7 @@ const TEMPLATES: TemplateOption[] = [
         titleHindi: 'गैर-प्रलोभन एवं गोपनीयता दायित्व',
         titleHinglish: 'Non-Solicitation aur Confidentiality',
         statusText: 'Active',
-        text: 'For a period of 12 months following termination, employee agrees not to solicit company clients or entice colleagues away, in compliance with Section 27 of Indian Contract Act.',
+        text: 'For a period of 12 months following termination, employee agrees not to solicit company clients or entice colleagues away, in compliance with applicable trade secret and employment laws.',
         textHindi: 'कार्यमुक्ति के बाद १२ महीने की अवधि तक कर्मचारी कंपनी के ग्राहकों या कर्मचारियों को लुभाने का प्रयास नहीं करेगा।',
         textHinglish: 'Termination ke baad 12 months tak employee company clients ya colleagues ko solicit nahi karega.'
       }
@@ -265,12 +265,12 @@ const TEMPLATES: TemplateOption[] = [
     defaultTitleEn: 'Shareholders & Advisory Equity Agreement (2026)',
     defaultTitleHi: 'शेयरधारक एवं इक्विटी सलाहकार अनुबंध (२०२६)',
     defaultTitleHinglish: 'Shareholders aur Advisory Equity Agreement (2026)',
-    defaultCounterparty: 'Sequoia India Growth Fund / Elevation',
-    defaultConsideration: '₹1,50,00,000 Equity Investment',
+    defaultCounterparty: 'Global Growth Partners / Elevation Capital',
+    defaultConsideration: '$2,500,000 Equity Investment',
     tagEn: 'Corporate',
     tagHi: 'कॉर्पोरेट',
-    descriptionEn: 'Founder rights, board composition, pre-emption, drag-along, and tag-along rights under the Companies Act 2013.',
-    descriptionHi: 'कंपनी अधिनियम २०१३ के अंतर्गत निदेशक मंडल संरचना, प्री-एम्पशन एवं टैग-अलॉन्ग अधिकार।',
+    descriptionEn: 'Founder rights, board composition, pre-emption, drag-along, and tag-along rights under standard corporate law.',
+    descriptionHi: 'निदेशक मंडल संरचना, प्री-एम्पशन एवं टैग-अलॉन्ग अधिकार।',
     icon: 'account_balance',
     color: 'indigo',
     clauses: [
@@ -339,9 +339,9 @@ const TEMPLATES: TemplateOption[] = [
         titleHindi: 'लागू कानून एवं विवाद निपटारा',
         titleHinglish: 'Governing Law aur Dispute Settlement',
         statusText: 'Active',
-        text: 'Governed by the laws of India. Any controversy shall be resolved through amicable consultation or binding arbitration.',
-        textHindi: 'भारतीय कानूनों द्वारा शासित। किसी भी विवाद का समाधान आपसी बातचीत या मध्यस्थता द्वारा किया जाएगा।',
-        textHinglish: 'Indian laws ke mutabik govern hoga aur disputes arbitration ke zariye solve honge.'
+        text: 'Governed by international digital contract norms. Any controversy shall be resolved through amicable consultation or binding arbitration.',
+        textHindi: 'अंतरराष्ट्रीय डिजिटल अनुबंध मानकों द्वारा शासित। किसी भी विवाद का समाधान आपसी बातचीत या मध्यस्थता द्वारा किया जाएगा।',
+        textHinglish: 'International contract norms ke mutabik govern hoga aur disputes arbitration ke zariye solve honge.'
       }
     ]
   }
@@ -363,10 +363,10 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
   // Agreement Form Fields
   const [title, setTitle] = useState(selectedTemplate.defaultTitleEn);
   const [counterparty, setCounterparty] = useState(selectedTemplate.defaultCounterparty);
-  const [counterpartyEmail, setCounterpartyEmail] = useState('signatory@partner-org.in');
+  const [counterpartyEmail, setCounterpartyEmail] = useState('signatory@partner-org.io');
   const [remuneration, setRemuneration] = useState(selectedTemplate.defaultConsideration);
-  const [jurisdiction, setJurisdiction] = useState('Mumbai Seat • Bombay High Court & MCIA');
-  const [stampDutyChoice, setStampDutyChoice] = useState('Maharashtra e-Challan (GRAS) - ₹500');
+  const [jurisdiction, setJurisdiction] = useState('Global Arbitration Seat • International Chamber of Commerce');
+  const [stampDutyChoice, setStampDutyChoice] = useState('Digital Stamping Protocol - VAULT-2026');
   const [contractLang, setContractLang] = useState<ContractLanguage>(initialContractLang);
 
   // Clauses list
@@ -447,19 +447,19 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
     const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' }) + ' IST';
     const uniqueId = `contract-${Date.now()}`;
     const codeNumber = Math.floor(1000 + Math.random() * 9000);
-    const code = `IN-${selectedTemplate.category.toUpperCase().slice(0, 3)}-${codeNumber}`;
+    const code = `VAULT-${selectedTemplate.category.toUpperCase().slice(0, 3)}-${codeNumber}`;
     const simulatedSha = '0x' + Array.from({ length: 64 }, () => Math.floor(Math.random() * 16).toString(16)).join('');
 
     const signers: Signer[] = [
       {
         id: `s-${Date.now()}-1`,
-        name: 'Priya Sharma (You)',
-        nameHindi: 'प्रिया शर्मा (आप)',
+        name: 'Alexander Vance (You)',
+        nameHindi: 'अलेक्जेंडर वेंस (आप)',
         role: 'Authorized Signatory',
-        company: 'PAKT India Tech Labs LLP',
+        company: 'PAKT Global Systems',
         status: isDraft ? 'active_due' : 'active_due',
-        initials: 'PS',
-        dscType: 'Aadhaar e-Sign OTP (UIDAI)',
+        initials: 'AV',
+        dscType: 'Cryptographic Passkey / e-Sign OTP',
       },
       {
         id: `s-${Date.now()}-2`,
@@ -469,7 +469,7 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
         company: counterparty || 'Partner Organization',
         status: 'in_queue',
         initials: (counterparty || 'CP').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase(),
-        dscType: 'Class 3 DSC (eMudhra CA)',
+        dscType: 'Digital Certificate / Web3 Signer',
       }
     ];
 
@@ -479,9 +479,9 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
         timestamp,
         titleEn: 'Agreement Created & Clauses Drafted',
         titleHi: 'अनुबंध सृजित एवं धाराएं प्रारूपित',
-        descriptionEn: `Draft created using ${selectedTemplate.titleEn} template under Indian Contract Act 1872.`,
-        descriptionHi: `भारतीय अनुबंध अधिनियम १८७२ के तहत ${selectedTemplate.titleHi} प्रारूप का उपयोग करके अनुबंध तैयार किया गया।`,
-        actor: 'Priya Sharma (Author)',
+        descriptionEn: `Draft created using ${selectedTemplate.titleEn} template under standard commercial contract principles.`,
+        descriptionHi: `मानक प्रारूप का उपयोग करके ${selectedTemplate.titleHi} तैयार किया गया।`,
+        actor: 'Alexander Vance (Author)',
         eventType: 'creation',
       }
     ];
@@ -490,11 +490,11 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
       history.push({
         id: `h-stamp-${Date.now() + 1}`,
         timestamp,
-        titleEn: 'e-Stamp Duty Framework Configured',
-        titleHi: 'ई-स्टाम्प शुल्क ढांचा निर्धारित',
-        descriptionEn: `${stampDutyChoice} configured for legal stamping compliance.`,
-        descriptionHi: `विधिक अनुपालन हेतु ${stampDutyChoice} निर्धारित किया गया।`,
-        actor: 'Statutory Stamp Gateway',
+        titleEn: 'Digital Stamping Protocol Configured',
+        titleHi: 'डिजिटल स्टाम्प प्रोटोकॉल निर्धारित',
+        descriptionEn: `${stampDutyChoice} configured for verification compliance.`,
+        descriptionHi: `सत्यापन हेतु ${stampDutyChoice} निर्धारित किया गया।`,
+        actor: 'Protocol Stamp Gateway',
         eventType: 'stamp_duty',
       });
     }
@@ -510,9 +510,9 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
       statusLabelEn: isDraft ? 'DRAFT IN REVIEW' : 'WAITING FOR SIGNATURE',
       statusLabelHi: isDraft ? 'प्रारूप समीक्षाधीन' : 'हस्ताक्षर की प्रतीक्षा',
       statusLabelHinglish: isDraft ? 'DRAFT IN REVIEW' : 'WAITING FOR SIGNATURE',
-      parties: ['PAKT India Tech Labs LLP', counterparty || 'Partner Org'],
-      partiesHindi: `पाक्त इंडिया टेक लैब्स एलएलपी एवं ${counterparty || 'साझेदार'}`,
-      partiesHinglish: `PAKT India Tech Labs LLP aur ${counterparty || 'Partner Org'}`,
+      parties: ['PAKT Global Systems', counterparty || 'Partner Org'],
+      partiesHindi: `पाक्त ग्लोबल सिस्टम्स एवं ${counterparty || 'साझेदार'}`,
+      partiesHinglish: `PAKT Global Systems aur ${counterparty || 'Partner Org'}`,
       sha256: simulatedSha,
       evmAnchor: 'Ethereum Sepolia Testnet (11155111)',
       polygonTx: polygonAnchorEnabled ? 'Ethereum Sepolia: Pending Attestation Anchor' : undefined,
@@ -524,8 +524,8 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
       clauses,
       jurisdiction,
       contractLanguage: contractLang,
-      summary: `Legally compliant ${selectedTemplate.titleEn} with ${clauses.length} standard clauses under Indian jurisdiction.`,
-      summaryHindi: `भारतीय क्षेत्राधिकार के तहत ${clauses.length} मानक धाराओं सहित विधिक रूप से मान्य ${selectedTemplate.titleHi}।`,
+      summary: `Standard ${selectedTemplate.titleEn} with ${clauses.length} structured clauses and cryptographic audit manifest.`,
+      summaryHindi: `${clauses.length} मानक धाराओं सहित संरचित ${selectedTemplate.titleHi}।`,
       history,
       storedInVault: false,
     };
@@ -539,19 +539,19 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
     showLoading({
       titleEn: `Synthesizing Agreement: ${newContract.code}`,
       titleHi: `अनुबंध का निर्माण: ${newContract.code}`,
-      subtitleEn: 'Compiling clauses, verifying statutory guidelines, and preparing digital e-sign room...',
-      subtitleHi: 'धाराओं का संकलन, विधिक दिशानिर्देशों की जांच एवं डिजिटल ई-साइन कक्ष की तैयारी...',
+      subtitleEn: 'Compiling clauses, verifying protocol guidelines, and preparing digital e-sign room...',
+      subtitleHi: 'धाराओं का संकलन, दिशानिर्देशों की जांच एवं डिजिटल ई-साइन कक्ष की तैयारी...',
       duration: 1800,
       customSteps: [
-        'Formatting bilingual clauses under Indian Contract Act 1872...',
-        aiAuditEnabled ? 'Running automated DPDP Act & liability risk audit...' : 'Checking formatting compliance...',
+        'Formatting bilingual clauses under standard commercial contract norms...',
+        aiAuditEnabled ? 'Running automated AI privacy & liability risk audit...' : 'Checking formatting compliance...',
         'Computing SHA-256 digital fingerprint & Merkle manifest...',
-        sec65BEnabled ? 'Attaching Section 65B Electronic Evidence metadata...' : 'Preparing contract envelope...',
+        sec65BEnabled ? 'Attaching Cryptographic Electronic Evidence metadata...' : 'Preparing contract envelope...',
         'Agreement successfully created! Opening sign room...',
       ],
       customStepsHi: [
-        'भारतीय अनुबंध अधिनियम १८७२ के अंतर्गत धाराओं का प्रारूपण...',
-        aiAuditEnabled ? 'डीपीडीपी अधिनियम एवं देयता जोखिम का स्वचालित परीक्षण...' : 'प्रारूप विनिर्देशों की जांच...',
+        'मानक वाणिज्यिक अनुबंध मानदंडों के अंतर्गत धाराओं का प्रारूपण...',
+        aiAuditEnabled ? 'गोपनीयता एवं देयता जोखिम का स्वचालित परीक्षण...' : 'प्रारूप विनिर्देशों की जांच...',
         'SHA-256 डिजिटल फ़िंगरप्रिंट एवं घोषणापत्र की गणना...',
         sec65BEnabled ? 'धारा ६५ख इलेक्ट्रॉनिक साक्ष्य मेटाडेटा संलग्न किया गया...' : 'अनुबंध एनवेलप तैयार किया जा रहा है...',
         'अनुबंध सफलतापूर्वक तैयार! ई-साइन कक्ष खुल रहा है...',
@@ -613,8 +613,8 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
               </h1>
               <p className="text-xs text-slate-600 mt-0.5">
                 {lang === 'EN'
-                  ? 'Configure, customize clauses, and execute a legally binding agreement under Indian law.'
-                  : 'भारतीय कानूनों के तहत विधिक रूप से मान्य अनुबंध तैयार करें, धाराएं अनुकूलित करें और हस्ताक्षर करें।'}
+                  ? 'Configure, customize clauses, and execute a cryptographic tamper-evident agreement.'
+                  : 'अपरिवर्तनीय डिजिटल अनुबंध तैयार करें, धाराएं अनुकूलित करें और हस्ताक्षर करें।'}
               </p>
             </div>
 
@@ -757,40 +757,40 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
               {/* Legal Jurisdiction Seat */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                  {lang === 'EN' ? 'Legal Seat & Courts' : 'विधिक सीट व न्यायालय'}
+                  {lang === 'EN' ? 'Legal Seat & Jurisdiction' : 'विधिक सीट व क्षेत्राधिकार'}
                 </label>
                 <select
                   value={jurisdiction}
                   onChange={(e) => setJurisdiction(e.target.value)}
                   className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs rounded-xl px-3 py-2.5 font-medium focus:outline-none focus:border-[#ac2e00] focus:bg-white"
                 >
-                  <option value="Mumbai Seat • Bombay High Court & MCIA">Mumbai (Bombay High Court & MCIA)</option>
-                  <option value="New Delhi Seat • Delhi High Court & DIAC">New Delhi (Delhi High Court & DIAC)</option>
-                  <option value="Bengaluru Seat • Karnataka High Court">Bengaluru (Karnataka High Court)</option>
-                  <option value="Hyderabad Seat • Telangana High Court">Hyderabad (Telangana High Court)</option>
+                  <option value="Global Arbitration Seat • International Chamber of Commerce">Global Commercial Arbitration Seat (ICC)</option>
+                  <option value="London Seat • London Court of International Arbitration (LCIA)">London Seat (LCIA)</option>
+                  <option value="Singapore Seat • Singapore International Arbitration Centre (SIAC)">Singapore Seat (SIAC)</option>
+                  <option value="New York Seat • American Arbitration Association (AAA)">New York Seat (AAA)</option>
                 </select>
                 <span className="block text-[11px] text-slate-500 mt-1">
-                  {lang === 'EN' ? 'Arbitration Seat under Act of 1996' : '१९९६ अधिनियम के तहत मध्यस्थता सीट'}
+                  {lang === 'EN' ? 'Binding Arbitration Seat & Applicable Law' : 'मध्यस्थता सीट एवं लागू कानून'}
                 </span>
               </div>
 
               {/* e-Stamp Duty Provider */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                  {lang === 'EN' ? 'e-Stamp Duty Challan' : 'ई-स्टाम्प शुल्क व्यवस्था'}
+                  {lang === 'EN' ? 'Digital Stamping Protocol' : 'डिजिटल स्टाम्प प्रोटोकॉल'}
                 </label>
                 <select
                   value={stampDutyChoice}
                   onChange={(e) => setStampDutyChoice(e.target.value)}
                   className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs rounded-xl px-3 py-2.5 font-medium focus:outline-none focus:border-[#ac2e00] focus:bg-white"
                 >
-                  <option value="Maharashtra e-Challan (GRAS) - ₹500">Maharashtra GRAS e-Challan (₹500)</option>
-                  <option value="NCT Delhi e-Stamping (StockHolding) - ₹100">NCT Delhi e-Stamping (₹100)</option>
-                  <option value="Karnataka Digital Stamping - ₹200">Karnataka Digital Stamping (₹200)</option>
-                  <option value="Pre-stamped / Statutory Exemption">Pre-stamped / Statutory Exemption</option>
+                  <option value="Digital Stamping Protocol - VAULT-2026">Cryptographic Hash Stamping (VAULT-2026)</option>
+                  <option value="Standard Commercial Stamping Token">Standard Commercial Stamping Token</option>
+                  <option value="Zero-Fee Pre-Validated Digest">Zero-Fee Pre-Validated Digest</option>
+                  <option value="Mutual Waiver of Physical Stamping">Mutual Waiver of Physical Stamping</option>
                 </select>
                 <span className="block text-[11px] text-slate-500 mt-1">
-                  {lang === 'EN' ? 'Compliant with State Stamp Act' : 'राज्य स्टाम्प अधिनियम के अनुरूप'}
+                  {lang === 'EN' ? 'Cryptographic Integrity Timestamp' : 'क्रिप्टोग्राफ़िक अखंडता समय-मुहर'}
                 </span>
               </div>
             </div>
@@ -828,11 +828,11 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
                   <input
                     type="text"
                     disabled
-                    value="PAKT India Tech Labs LLP"
+                    value="PAKT Global Systems"
                     className="w-full bg-slate-100 border border-slate-200 text-slate-600 text-xs rounded-xl px-3.5 py-2.5 font-medium cursor-not-allowed"
                   />
                   <span className="block text-[11px] text-slate-500 mt-1">
-                    {lang === 'EN' ? 'Signed via your Aadhaar OTP / DSC' : 'आपके आधार ओटीपी अथवा डीएससी से हस्ताक्षरित'}
+                    {lang === 'EN' ? 'Signed via your Passkey / e-Sign OTP' : 'आपके पासकी अथवा ई-साइन ओटीपी से हस्ताक्षरित'}
                   </span>
                 </div>
 
@@ -846,7 +846,7 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
                     required
                     value={counterparty}
                     onChange={(e) => setCounterparty(e.target.value)}
-                    placeholder="e.g. Tata Digital Ltd"
+                    placeholder="e.g. Global Tech Enterprise"
                     className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs rounded-xl px-3.5 py-2.5 font-medium focus:outline-none focus:border-[#ac2e00] focus:bg-white"
                   />
                   <span className="block text-[11px] text-slate-500 mt-1">
@@ -866,29 +866,29 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
                     required
                     value={counterpartyEmail}
                     onChange={(e) => setCounterpartyEmail(e.target.value)}
-                    placeholder="e.g. signatory@partner.com or +91 98200XXXXX"
+                    placeholder="e.g. signatory@partner.com"
                     className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs rounded-xl px-3.5 py-2.5 font-medium focus:outline-none focus:border-[#ac2e00] focus:bg-white"
                   />
                   <span className="block text-[11px] text-slate-500 mt-1">
-                    {lang === 'EN' ? 'Will receive Aadhaar OTP / DSC invite link' : 'आधार ओटीपी अथवा डीएससी निमंत्रण लिंक भेजा जाएगा'}
+                    {lang === 'EN' ? 'Will receive secure verification invite link' : 'सत्यापन निमंत्रण लिंक भेजा जाएगा'}
                   </span>
                 </div>
 
                 {/* Contract Consideration / Value */}
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    {lang === 'EN' ? 'Contract Value / Consideration (INR)' : 'अनुबंध प्रतिफल / मूल्य (रुपये)'}
+                    {lang === 'EN' ? 'Contract Value / Consideration' : 'अनुबंध प्रतिफल / मूल्य'}
                   </label>
                   <input
                     type="text"
                     required
                     value={remuneration}
                     onChange={(e) => setRemuneration(e.target.value)}
-                    placeholder="e.g. ₹24,00,000 / year"
+                    placeholder="e.g. $120,000 / year"
                     className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-xs rounded-xl px-3.5 py-2.5 font-mono focus:outline-none focus:border-[#ac2e00] focus:bg-white"
                   />
                   <span className="block text-[11px] text-slate-500 mt-1">
-                    {lang === 'EN' ? 'Section 2(d) Indian Contract Act requirement' : 'भारतीय संविदा अधिनियम धारा २(घ) के तहत प्रतिफल'}
+                    {lang === 'EN' ? 'Mutually agreed contractual consideration' : 'परस्पर सहमत संविदा प्रतिफल'}
                   </span>
                 </div>
               </div>
@@ -1083,12 +1083,12 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
                     {lang === 'EN' ? 'Automated AI Risk Check' : 'स्वचालित एआई जोखिम जांच'}
                   </span>
                   <span className="block text-[11px] text-slate-500 mt-0.5 leading-tight">
-                    {lang === 'EN' ? 'Scans for DPDP Act compliance and liability cap issues.' : 'डीपीडीपी अधिनियम एवं देयता सीमाओं की जांच।'}
+                    {lang === 'EN' ? 'Scans for data privacy compliance and liability cap issues.' : 'डेटा गोपनीयता एवं देयता सीमाओं की जांच।'}
                   </span>
                 </div>
               </div>
 
-              {/* Option 2: Section 65B Certificate */}
+              {/* Option 2: Cryptographic Certificate */}
               <div
                 onClick={() => setSec65BEnabled(!sec65BEnabled)}
                 className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-start gap-2.5 ${
@@ -1105,15 +1105,15 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
                 </div>
                 <div>
                   <span className="block text-xs font-bold text-slate-900">
-                    {lang === 'EN' ? 'Section 65B IT Act Certificate' : 'धारा ६५ख साक्ष्य प्रमाणपत्र'}
+                    {lang === 'EN' ? 'Cryptographic Certificate of Authenticity' : 'क्रिप्टोग्राफ़िक प्रामाणिकता प्रमाणपत्र'}
                   </span>
                   <span className="block text-[11px] text-slate-500 mt-0.5 leading-tight">
-                    {lang === 'EN' ? 'Ensures court admissibility under the Indian Evidence Act.' : 'भारतीय साक्ष्य अधिनियम के तहत अदालत में स्वीकार्यता।'}
+                    {lang === 'EN' ? 'Ensures evidentiary admissibility under recognized electronic record standards.' : 'मान्यता प्राप्त इलेक्ट्रॉनिक रिकॉर्ड मानकों के तहत स्वीकार्यता।'}
                   </span>
                 </div>
               </div>
 
-              {/* Option 3: Polygon Network Record */}
+              {/* Option 3: Ethereum Sepolia Network Record */}
               <div
                 onClick={() => setPolygonAnchorEnabled(!polygonAnchorEnabled)}
                 className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-start gap-2.5 ${
@@ -1130,7 +1130,7 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
                 </div>
                 <div>
                   <span className="block text-xs font-bold text-slate-900">
-                    {lang === 'EN' ? 'Polygon Network Anchor' : 'पॉलीगॉन नेटवर्क अंकन'}
+                    {lang === 'EN' ? 'Ethereum Sepolia Network Anchor' : 'एथेरियम सेपोलिया नेटवर्क अंकन'}
                   </span>
                   <span className="block text-[11px] text-slate-500 mt-0.5 leading-tight">
                     {lang === 'EN' ? 'Permanent cryptographic tamper-proof timestamp.' : 'अपरिवर्तनीय डिजिटल समय-मुहर सुरक्षा।'}
@@ -1146,8 +1146,8 @@ export const NewAgreementScreen: React.FC<NewAgreementScreenProps> = ({
               <span className="material-symbols-outlined text-[18px] text-emerald-600">verified</span>
               <span>
                 {lang === 'EN'
-                  ? 'Agreement will be ready for immediate Aadhaar OTP or DSC e-signature'
-                  : 'अनुबंध तत्काल आधार ओटीपी अथवा डीएससी हस्ताक्षर हेतु तैयार होगा'}
+                  ? 'Agreement will be ready for immediate cryptographic passkey or e-signature'
+                  : 'अनुबंध तत्काल बायोमेट्रिक अथवा ई-हस्ताक्षर हेतु तैयार होगा'}
               </span>
             </div>
 

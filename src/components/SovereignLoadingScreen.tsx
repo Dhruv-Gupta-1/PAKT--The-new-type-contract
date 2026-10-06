@@ -21,18 +21,18 @@ interface SovereignLoadingScreenProps {
 }
 
 const DEFAULT_STEPS_EN = [
-  'Connecting to Mumbai Node (IN-MUM-1)...',
+  'Connecting to Sovereign Global Node...',
   'Computing SHA-256 canonical cryptographic digest...',
-  'Verifying statutory rules under Indian IT Act 2000...',
-  'Synchronizing state with Polygon PoS blockchain...',
+  'Verifying smart contract rules & EIP-712 signatures...',
+  'Synchronizing state with decentralized blockchain...',
   'Finalizing sovereign state transition...',
 ];
 
 const DEFAULT_STEPS_HI = [
-  'मुंबई नोड (IN-MUM-1) से जुड़ाव जारी...',
+  'संप्रभु ग्लोबल नोड से जुड़ाव जारी...',
   'SHA-256 कैनोनिकल क्रिप्टोग्राफ़िक डाइजेस्ट की गणना...',
-  'भारतीय आईटी अधिनियम २००० के तहत विधिक नियमों का सत्यापन...',
-  'पॉलीगॉन पीओएस ब्लॉकचेन के साथ स्थिति का समन्वय...',
+  'स्मार्ट अनुबंध नियमों एवं डिजिटल हस्ताक्षरों का सत्यापन...',
+  'विकेंद्रीकृत ब्लॉकचेन के साथ स्थिति का समन्वय...',
   'संप्रभु स्थिति पूर्ण की जा रही है...',
 ];
 
@@ -51,8 +51,8 @@ export const SovereignLoadingScreen: React.FC<SovereignLoadingScreenProps> = ({
     : (options?.titleEn || 'Processing Sovereign Operation...');
 
   const subtitle = lang === 'HI'
-    ? (options?.subtitleHi || options?.subtitleEn || 'कृपया प्रतीक्षा करें, मुंबई नोड एवं पॉलीगॉन ब्लॉकचेन समन्वयित हो रहे हैं।')
-    : (options?.subtitleEn || 'Please wait while Mumbai Node IN-MUM-1 and Polygon PoS blockchain synchronize.');
+    ? (options?.subtitleHi || options?.subtitleEn || 'कृपया प्रतीक्षा करें, संप्रभु नोड एवं ब्लॉकचेन समन्वयित हो रहे हैं।')
+    : (options?.subtitleEn || 'Please wait while Sovereign Node and blockchain synchronize.');
 
   const steps = lang === 'HI'
     ? (options?.customStepsHi || DEFAULT_STEPS_HI)
@@ -113,9 +113,9 @@ export const SovereignLoadingScreen: React.FC<SovereignLoadingScreenProps> = ({
         {/* Top Node Indicator Chip */}
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f2f4f6] border border-[#e4beb4]/40 text-[11px] font-mono text-[#5b4139] mb-6">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-          <span>NODE: IN-MUM-1 (MUMBAI)</span>
+          <span>NODE: GLOBAL-EDGE (CONSENSUS)</span>
           <span className="text-[#ac2e00] font-bold">•</span>
-          <span className="text-[#ac2e00] font-bold">POLYGON PoS</span>
+          <span className="text-[#ac2e00] font-bold">ETHEREUM SEPOLIA</span>
         </div>
 
         {/* ========================================================== */}
@@ -187,10 +187,10 @@ export const SovereignLoadingScreen: React.FC<SovereignLoadingScreenProps> = ({
               SHA-256 PROOF
             </span>
             <span className="px-2 py-0.5 rounded bg-[#f2f4f6] border border-gray-200">
-              IT ACT § 10A
+              EIP-712 AUTH
             </span>
             <span className="px-2 py-0.5 rounded bg-[#f2f4f6] border border-gray-200">
-              DPDP ACT 2023
+              ZERO-KNOWLEDGE
             </span>
           </div>
 

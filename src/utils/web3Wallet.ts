@@ -1,7 +1,7 @@
 /**
  * PAKT Web3 & MetaMask Resilient Connection Handler
  * Handles real window.ethereum (MetaMask / Brave / Coinbase) with zero unhandled rejections
- * and seamless fallback to Sovereign Mumbai Node (EIP-4361 & EIP-712 compliant)
+ * and seamless fallback to Sovereign Consensus Node (EIP-4361 & EIP-712 compliant)
  */
 
 export interface Web3ConnectionState {
@@ -44,14 +44,14 @@ export async function connectMetaMaskWallet(): Promise<Web3ConnectionState> {
     const provider = getEthereumProvider();
 
     if (!provider) {
-      console.info('[PAKT Web3] No injected Web3 provider detected in this browser/frame. Initializing Sovereign IN-MUM-1 node address.');
+      console.info('[PAKT Web3] No injected Web3 provider detected in this browser/frame. Initializing Sovereign Consensus node address.');
       return {
         isConnected: true,
         address: DEFAULT_FALLBACK_ADDRESS,
         chainId: POLYGON_CHAIN_ID,
-        providerName: 'Sovereign Mumbai Node (IN-MUM-1)',
+        providerName: 'Sovereign Node (Sepolia)',
         isFallback: true,
-        statusMessage: 'Connected via Sovereign Mumbai Enclave (Simulated)',
+        statusMessage: 'Connected via Sovereign Enclave (Simulated)',
       };
     }
 
@@ -127,8 +127,8 @@ export async function signContractHashEIP712(
           contractTitle,
           contractCode,
           canonicalSha256: sha256Hash,
-          jurisdiction: 'Mumbai, Republic of India',
-          statutoryAct: 'Information Technology Act 2000 Section 10A & DPDP Act 2023',
+          jurisdiction: 'Global Commercial Arbitration Jurisdiction',
+          statutoryAct: 'International Electronic Agreement Protocol & Cryptographic Consensus',
           timestamp: new Date().toISOString(),
         },
         primaryType: 'LegalExecutionManifest',

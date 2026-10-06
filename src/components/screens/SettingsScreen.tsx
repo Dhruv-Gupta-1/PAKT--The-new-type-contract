@@ -46,10 +46,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
   const [web3State, setWeb3State] = useState<Web3ConnectionState>({
     isConnected: true,
     address: '0x71C857835B551339A471026027a48911C36b5A01',
-    chainId: '0x89',
-    providerName: 'MetaMask / Sovereign Mumbai Node',
+    chainId: '0xaa36a7',
+    providerName: 'MetaMask / Sovereign Sepolia Node',
     isFallback: false,
-    statusMessage: 'Ready (Polygon PoS)',
+    statusMessage: 'Ready (Ethereum Sepolia)',
   });
   const { showLoading } = useLoading();
   const [isConnecting, setIsConnecting] = useState(false);
@@ -59,19 +59,19 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
     showLoading({
       titleEn: 'Connecting MetaMask Web3 Signer',
       titleHi: 'मेटामास्क वेब३ हस्ताक्षरकर्ता से जुड़ाव',
-      subtitleEn: 'Requesting Ethereum provider accounts and establishing EIP-4361 handshake with Polygon PoS.',
-      subtitleHi: 'एथेरियम प्रदाता खातों का अनुरोध एवं पॉलीगॉन पीओएस के साथ EIP-4361 हैंडशेक।',
+      subtitleEn: 'Requesting Ethereum provider accounts and establishing EIP-4361 handshake with Ethereum Sepolia.',
+      subtitleHi: 'एथेरियम प्रदाता खातों का अनुरोध एवं सेपोलिया के साथ EIP-4361 हैंडशेक।',
       duration: 1400,
       customSteps: [
         'Querying window.ethereum provider...',
-        'Checking Polygon PoS chain ID 137...',
+        'Checking Ethereum Sepolia chain ID 11155111...',
         'Validating EIP-4361 SIWE signature permissions...',
         'Connecting sovereign enclave signer...',
         'MetaMask synchronized successfully!',
       ],
       customStepsHi: [
         'window.ethereum प्रदाता की जांच...',
-        'पॉलीगॉन पीओएस चेन आईडी १३७ का सत्यापन...',
+        'एथेरियम सेपोलिया नेटवर्क का सत्यापन...',
         'EIP-4361 SIWE हस्ताक्षर अनुमतियों की जांच...',
         'संप्रभु एन्क्लेव हस्ताक्षरकर्ता से जुड़ाव...',
         'मेटामास्क सफलतापूर्वक समन्वयित हुआ!',
@@ -80,7 +80,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
         try {
           const res = await connectMetaMaskWallet();
           setWeb3State(res);
-          triggerBanner(lang === 'EN' ? 'MetaMask wallet synchronized with Polygon PoS' : 'मेटामास्क वॉलेट पॉलीगॉन पीओएस के साथ समन्वयित');
+          triggerBanner(lang === 'EN' ? 'MetaMask wallet synchronized with Ethereum Sepolia' : 'मेटामास्क वॉलेट सेपोलिया के साथ समन्वयित');
         } catch {
           // Handled cleanly
         } finally {
@@ -102,21 +102,21 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
     showLoading({
       titleEn: 'Updating Sovereign Profile & Identity',
       titleHi: 'संप्रभु प्रोफ़ाइल एवं पहचान अद्यतन जारी',
-      subtitleEn: 'Re-anchoring statutory metadata, updating verified contact endpoints, and synchronizing with Mumbai Enclave.',
-      subtitleHi: 'सांविधिक मेटाडेटा का पुनर्स्थापन, सत्यापित संपर्क बिंदुओं का अद्यतन एवं मुंबई एन्क्लेव समन्वय।',
+      subtitleEn: 'Re-anchoring cryptographic metadata, updating verified contact endpoints, and synchronizing with sovereign vault.',
+      subtitleHi: 'क्रिप्टोग्राफिक मेटाडेटा का पुनर्स्थापन, सत्यापित संपर्क बिंदुओं का अद्यतन एवं वॉल्ट समन्वय।',
       duration: 1600,
       customSteps: [
-        'Validating DPDP Act 2023 consent manifest...',
-        'Updating phone/email alert endpoints (+91 / SMTP)...',
+        'Validating privacy consent manifest...',
+        'Updating phone/email alert endpoints...',
         'Recomputing DID signature & sovereign KYC record...',
-        'Anchoring changes to Mumbai Node IN-MUM-1...',
+        'Anchoring changes to Sovereign Consensus Node...',
         'Profile updated successfully!',
       ],
       customStepsHi: [
-        'डीपीडीपी अधिनियम २०२३ सहमति घोषणापत्र की पुष्टि...',
-        'फ़ोन/ईमेल अलर्ट एंडपॉइंट्स (+91 / SMTP) का अद्यतन...',
-        'डीआईडी हस्ताक्षर एवं संप्रभु केवाईसी रिकॉर्ड की पुनर्गणना...',
-        'मुंबई नोड IN-MUM-1 में परिवर्तनों का अंकन...',
+        'गोपनीयता सहमति घोषणापत्र की पुष्टि...',
+        'फ़ोन/ईमेल अलर्ट एंडपॉइंट्स का अद्यतन...',
+        'डीआईडी हस्ताक्षर एवं संप्रभु रिकॉर्ड की पुनर्गणना...',
+        'सर्वसम्मति नोड में परिवर्तनों का अंकन...',
         'प्रोफ़ाइल सफलतापूर्वक अद्यतन हुई!',
       ],
       onComplete: () => {
@@ -247,7 +247,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
           }`}
         >
           <span className="material-symbols-outlined text-[14px]">verified_user</span>
-          <span>{lang === 'EN' ? 'DPDP & Alerts' : 'डीपीडीपी व अलर्ट'}</span>
+          <span>{lang === 'EN' ? 'Privacy & Alerts' : 'गोपनीयता व अलर्ट'}</span>
         </button>
       </div>
 
@@ -289,7 +289,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                     alt={userProfile.name}
                     className="w-16 h-16 rounded-2xl object-cover border-2 border-[#ac2e00]/20 shadow-xs"
                   />
-                  <span className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center text-white" title="DPDP Verified Principal">
+                  <span className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center text-white" title="Verified Sovereign Principal">
                     <span className="material-symbols-outlined text-[12px] font-bold">check</span>
                   </span>
                 </div>
@@ -301,7 +301,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                     </h3>
                     <span className="material-symbols-outlined text-[#ac2e00] text-[18px]">verified</span>
                     <span className="font-mono text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">
-                      GOV BHARAT VERIFIED
+                      SOVEREIGN VERIFIED
                     </span>
                   </div>
 
@@ -412,16 +412,16 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
               <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#f2f4f6]">
                 <span className="font-mono text-[10px] text-[#575e70] bg-[#f2f4f6] px-2 py-0.5 rounded border border-gray-200 flex items-center gap-1">
                   <span className="material-symbols-outlined text-[12px] text-emerald-600">fingerprint</span>
-                  <span>Aadhaar: {userProfile.aadhaarMasked}</span>
+                  <span>ID: {userProfile.aadhaarMasked}</span>
                 </span>
                 <span className="font-mono text-[10px] text-[#575e70] bg-[#f2f4f6] px-2 py-0.5 rounded border border-gray-200 flex items-center gap-1">
                   <span className="material-symbols-outlined text-[12px] text-amber-600">credit_card</span>
-                  <span>PAN: {userProfile.panMasked}</span>
+                  <span>Tax ID: {userProfile.panMasked}</span>
                 </span>
                 {userProfile.dinNumber && (
                   <span className="font-mono text-[10px] text-[#575e70] bg-[#f2f4f6] px-2 py-0.5 rounded border border-gray-200 flex items-center gap-1">
                     <span className="material-symbols-outlined text-[12px] text-blue-600">gavel</span>
-                    <span>MCA DIN: {userProfile.dinNumber}</span>
+                    <span>Registry: {userProfile.dinNumber}</span>
                   </span>
                 )}
                 <span className="font-mono text-[10px] text-purple-800 bg-purple-50 px-2 py-0.5 rounded border border-purple-200 truncate max-w-[240px]" title={userProfile.didIdentifier}>
@@ -697,15 +697,15 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                 </div>
               </div>
 
-              {/* Statutory ID Updates (Aadhaar / PAN / DIN) */}
+              {/* Statutory ID Updates */}
               <div className="p-3 bg-[#fafbfc] rounded-xl border border-[#e4beb4]/30 flex flex-col gap-3">
                 <span className="text-[11px] font-bold text-[#ac2e00] uppercase tracking-wider">
-                  {lang === 'EN' ? 'Statutory KYC Identifiers' : 'सांविधिक केवाईसी पहचानकर्ता'}
+                  {lang === 'EN' ? 'KYC & Legal Identifiers' : 'केवाईसी एवं पहचानकर्ता'}
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div className="flex flex-col gap-1">
                     <label className="text-[11px] font-medium text-[#191c1e]">
-                      Aadhaar Masked
+                      National ID
                     </label>
                     <input
                       type="text"
@@ -716,7 +716,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                   </div>
                   <div className="flex flex-col gap-1">
                     <label className="text-[11px] font-medium text-[#191c1e]">
-                      PAN Masked
+                      Tax / Statutory ID
                     </label>
                     <input
                       type="text"
@@ -855,11 +855,11 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
               <div className="flex items-center gap-1.5">
                 <span className="material-symbols-outlined text-[15px] text-[#ac2e00]">balance</span>
                 <span className="font-bold text-[#191c1e]">
-                  {lang === 'EN' ? 'Statutory Governing Law:' : 'सांविधिक शासी विधि:'}
+                  {lang === 'EN' ? 'Governing Legal Framework:' : 'शासी विधिक ढांचा:'}
                 </span>
               </div>
               <span className="font-medium text-[#5b4139]">
-                Indian Contract Act 1872 & DPDP Act 2023
+                International Digital Contract Norms & Cryptographic Proof
               </span>
             </div>
           </div>
@@ -874,7 +874,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
           <div className="flex items-center gap-1.5 mb-2.5 px-1">
             <span className="material-symbols-outlined text-[#ac2e00] text-[18px]">link</span>
             <h2 className="text-[13px] font-bold uppercase tracking-wider text-[#191c1e]">
-              {lang === 'EN' ? '3. Sovereign Web3 & Polygon Blockchain Node' : '३. संप्रभु वेब३ एवं पॉलीगॉन ब्लॉकचेन नोड'}
+              {lang === 'EN' ? '3. Sovereign Web3 & Ethereum Sepolia Node' : '३. संप्रभु वेब३ एवं एथेरियम सेपोलिया नोड'}
             </h2>
           </div>
 
@@ -885,11 +885,11 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-[20px] text-[#ac2e00]">account_balance_wallet</span>
                   <span className="text-[13px] font-bold text-[#191c1e]">
-                    {lang === 'EN' ? 'MetaMask / Polygon Web3 Signer' : 'मेटामास्क / पॉलीगॉन वेब३ हस्ताक्षरकर्ता'}
+                    {lang === 'EN' ? 'MetaMask / Ethereum Web3 Signer' : 'मेटामास्क / एथेरियम वेब३ हस्ताक्षरकर्ता'}
                   </span>
                 </div>
                 <span className="font-mono text-[9px] bg-[#ac2e00] text-white px-2 py-0.5 rounded font-bold">
-                  POLYGON POS
+                  SEPOLIA
                 </span>
               </div>
               <div className="flex items-center justify-between text-[11px] font-mono">
@@ -922,8 +922,8 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                 </span>
                 <span className="text-[11px] text-[#5b4139]">
                   {lang === 'EN'
-                    ? 'Sponsored gas execution for all Indian IT Act digital agreements on Polygon (ERC-4337).'
-                    : 'पॉलीगॉन पर सभी भारतीय आईटी अधिनियम डिजिटल अनुबंधों हेतु प्रायोजित गैस निष्पादन।'}
+                    ? 'Sponsored gas execution for all digital agreements on Sepolia L2 (ERC-4337).'
+                    : 'सेपोलिया एल२ पर सभी डिजिटल अनुबंधों हेतु प्रायोजित गैस निष्पादन।'}
                 </span>
               </div>
               <label className="relative inline-flex items-center cursor-pointer shrink-0">
@@ -964,33 +964,33 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       )}
 
       {/* ========================================================================= */}
-      {/* GROUP 4: NATIONAL DIGITAL PUBLIC INFRASTRUCTURE */}
+      {/* GROUP 4: SECURE ARCHIVE & CLOUD VAULT */}
       {/* ========================================================================= */}
       {(activeTabGroup === 'all' || activeTabGroup === 'web3') && (
         <section className="mb-6">
           <div className="flex items-center gap-1.5 mb-2.5 px-1">
-            <span className="material-symbols-outlined text-[#ac2e00] text-[18px]">account_balance</span>
+            <span className="material-symbols-outlined text-[#ac2e00] text-[18px]">cloud_sync</span>
             <h2 className="text-[13px] font-bold uppercase tracking-wider text-[#191c1e]">
-              {lang === 'EN' ? '4. National Digital Public Infrastructure' : '४. राष्ट्रीय डिजिटल सार्वजनिक अवसंरचना'}
+              {lang === 'EN' ? '4. Secure Cloud Vault & Archive' : '४. सुरक्षित क्लाउड वॉल्ट एवं पुरालेख'}
             </h2>
           </div>
 
           <div className="bg-white rounded-xl p-4 shadow-xs border border-[#e4beb4]/30 flex flex-col gap-3">
-            {/* DigiLocker Direct Certificate Archive */}
+            {/* Vault Direct Certificate Archive */}
             <div className="flex items-center justify-between p-3 rounded-lg bg-[#f2f4f6]">
               <div className="flex flex-col min-w-0 pr-2">
                 <div className="flex items-center gap-2">
                   <span className="text-[13px] font-bold text-[#191c1e]">
-                    {lang === 'EN' ? 'DigiLocker Direct Certificate Archive' : 'डिजिलॉकर प्रत्यक्ष प्रमाणपत्र पुरालेख'}
+                    {lang === 'EN' ? 'Secure Vault Direct Certificate Archive' : 'सुरक्षित वॉल्ट प्रत्यक्ष प्रमाणपत्र पुरालेख'}
                   </span>
                   <span className="font-mono text-[9px] bg-blue-100 text-blue-900 px-1.5 py-0.5 rounded font-bold">
-                    IT ACT § 6A
+                    ENCRYPTED
                   </span>
                 </div>
                 <span className="text-[11px] text-[#5b4139] mt-0.5">
                   {lang === 'EN'
-                    ? 'Auto-deposit executed contracts into national citizen locker under IT Act § 6A.'
-                    : 'आईटी अधिनियम धारा ६क के तहत निष्पादित अनुबंध स्वतः राष्ट्रीय नागरिक लॉकर में जमा।'}
+                    ? 'Auto-deposit executed contracts into encrypted cloud storage backup.'
+                    : 'निष्पादित अनुबंधों को एन्क्रिप्टेड क्लाउड स्टोरेज बैकअप में स्वतः सुरक्षित करें।'}
                 </span>
               </div>
               <label className="relative inline-flex items-center cursor-pointer shrink-0">
@@ -1071,7 +1071,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
               <div className="flex flex-col min-w-0 pr-2">
                 <div className="flex items-center gap-1.5">
                   <span className="text-[13px] font-bold text-[#191c1e]">
-                    {lang === 'EN' ? 'Section 65B IT Act Evidence Dispatch' : 'धारा ६५ख आईटी अधिनियम साक्ष्य प्रेषण'}
+                    {lang === 'EN' ? 'Cryptographic Certificate Evidence Dispatch' : 'क्रिप्टोग्राफ़िक प्रमाणपत्र साक्ष्य प्रेषण'}
                   </span>
                   <span className="font-mono text-[10px] text-[#575e70] bg-white px-1.5 py-0.2 rounded border border-gray-200">
                     {userProfile.email}
@@ -1079,8 +1079,8 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                 </div>
                 <span className="text-[11px] text-[#5b4139] mt-0.5">
                   {lang === 'EN'
-                    ? 'Automatically dispatch verified Section 65B electronic certificate PDF to your inbox upon execution.'
-                    : 'निष्पादन पर अपने इनबॉक्स में स्वचालित रूप से ६५ख इलेक्ट्रॉनिक प्रमाणपत्र पीडीएफ प्राप्त करें।'}
+                    ? 'Automatically dispatch verified cryptographic certificate PDF to your inbox upon execution.'
+                    : 'निष्पादन पर अपने इनबॉक्स में स्वचालित रूप से इलेक्ट्रॉनिक प्रमाणपत्र पीडीएफ प्राप्त करें।'}
                 </span>
               </div>
               <label className="relative inline-flex items-center cursor-pointer shrink-0">
@@ -1121,22 +1121,22 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       )}
 
       {/* ========================================================================= */}
-      {/* GROUP 6: DPDP ACT 2023 COMPLIANCE & DATA SOVEREIGNTY */}
+      {/* GROUP 6: DATA PRIVACY & DATA SOVEREIGNTY */}
       {/* ========================================================================= */}
       {(activeTabGroup === 'all' || activeTabGroup === 'compliance') && (
         <section className="mb-6">
           <div className="flex items-center gap-1.5 mb-2.5 px-1">
             <span className="material-symbols-outlined text-[#ac2e00] text-[18px]">shield_person</span>
             <h2 className="text-[13px] font-bold uppercase tracking-wider text-[#191c1e]">
-              {lang === 'EN' ? '6. DPDP Act 2023 Compliance & Data Sovereignty' : '६. डीपीडीपी अधिनियम २०२३ अनुपालन एवं डेटा संप्रभुता'}
+              {lang === 'EN' ? '6. Data Privacy & Sovereignty' : '६. डेटा गोपनीयता एवं संप्रभुता'}
             </h2>
           </div>
 
           <div className="bg-white rounded-xl p-4 shadow-xs border border-[#e4beb4]/30 flex flex-col gap-3">
             <p className="text-[11px] text-[#5b4139] leading-relaxed">
               {lang === 'EN'
-                ? 'As a Data Principal under India Digital Personal Data Protection Act 2023, you retain sovereign rights to withdraw consent, erase local session logs, or export your cryptographic history at any time.'
-                : 'भारतीय डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम २०२३ के तहत डेटा स्वामी के रूप में आपके पास सहमति वापस लेने, सत्र लॉग मिटाने या किसी भी समय क्रिप्टोग्राफ़िक इतिहास निर्यात करने का संप्रभु अधिकार है।'}
+                ? 'As a Sovereign Data Principal under international privacy standards, you retain sovereign rights to withdraw consent, erase local session logs, or export your cryptographic history at any time.'
+                : 'अंतरराष्ट्रीय गोपनीयता मानकों के तहत डेटा स्वामी के रूप में आपके पास सहमति वापस लेने, सत्र लॉग मिटाने या किसी भी समय क्रिप्टोग्राफ़िक इतिहास निर्यात करने का संप्रभु अधिकार है।'}
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -1145,8 +1145,8 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                 onClick={() =>
                   triggerBanner(
                     lang === 'EN'
-                      ? 'Consent Audit Log exported: PAKT-DPDP-CONSENT-2026.json'
-                      : 'सहमति ऑडिट लॉग निर्यातित: PAKT-DPDP-CONSENT-2026.json'
+                      ? 'Consent Audit Log exported: PAKT-CONSENT-AUDIT-2026.json'
+                      : 'सहमति ऑडिट लॉग निर्यातित: PAKT-CONSENT-AUDIT-2026.json'
                   )
                 }
                 className="py-2.5 px-3 bg-[#eceef0] hover:bg-[#e0e3e5] text-[#191c1e] font-bold text-[12px] rounded-lg transition-colors flex items-center justify-center gap-1.5 border border-gray-200"

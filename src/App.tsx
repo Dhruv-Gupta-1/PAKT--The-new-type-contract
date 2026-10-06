@@ -11,6 +11,8 @@ import { BottomNav } from './components/BottomNav';
 import { QuickScreenSelector } from './components/QuickScreenSelector';
 import { LandingScreen } from './components/screens/LandingScreen';
 import { LoginScreen } from './components/screens/LoginScreen';
+import { SignUpScreen } from './components/screens/SignUpScreen';
+import { FeatureBuildingScreen } from './components/screens/FeatureBuildingScreen';
 import { TwoFactorScreen } from './components/screens/TwoFactorScreen';
 import { ContractsScreen } from './components/screens/ContractsScreen';
 import { ESignScreen } from './components/screens/ESignScreen';
@@ -110,7 +112,7 @@ export default function App() {
                   ...cl,
                   discarded: true,
                   discardReason:
-                    reason || 'Mutually waived by both signatories under Section 62 Indian Contract Act 1872',
+                    reason || 'Mutually waived by both signatories under mutual cryptographic consensus',
                   updatedAt: new Date().toLocaleTimeString(),
                 }
               : cl
@@ -128,7 +130,7 @@ export default function App() {
                 ...cl,
                 discarded: true,
                 discardReason:
-                  reason || 'Mutually waived by both signatories under Section 62 Indian Contract Act 1872',
+                  reason || 'Mutually waived by both signatories under mutual cryptographic consensus',
                 updatedAt: new Date().toLocaleTimeString(),
               }
             : cl
@@ -190,16 +192,16 @@ export default function App() {
   };
 
   const handleStoreContractInVault = (contractId: string) => {
-    const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' }) + ' IST';
+    const timestamp = new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }) + ' UTC';
     const storageDate = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    const newCertId = 'CERT-65B-2026-' + Math.floor(10000 + Math.random() * 90000);
+    const newCertId = 'CERT-VAULT-2026-' + Math.floor(10000 + Math.random() * 90000);
     const simulatedTx = '0x' + Array.from({ length: 32 }, () => Math.floor(Math.random() * 16).toString(16)).join('');
     const simulatedBlock = '#63,' + Math.floor(800000 + Math.random() * 200000);
 
     setContracts(prev =>
       prev.map(c => {
         if (c.id === contractId) {
-          const vaultArchiveId = c.vaultArchiveId || `VAULT-IN-MUM-${c.code}`;
+          const vaultArchiveId = c.vaultArchiveId || `VAULT-GLOBAL-${c.code}`;
           const existingHistory = c.history || [];
 
           const newEvents: AuditHistoryEvent[] = [];
@@ -207,10 +209,10 @@ export default function App() {
             newEvents.push({
               id: `h-exec-${Date.now()}`,
               timestamp,
-              titleEn: 'Dual-Party Execution & IT Act Attestation',
-              titleHi: 'द्विपक्षीय निष्पादन एवं आईटी अधिनियम साक्ष्य पूर्ण',
-              descriptionEn: 'Contract digitally executed via Class 3 DSC and Aadhaar e-Sign OTP gateway.',
-              descriptionHi: 'अनुबंध क्लास ३ डीएससी एवं आधार ई-साइन ओटीपी द्वारा निष्पादित।',
+              titleEn: 'Dual-Party Execution & Cryptographic Attestation',
+              titleHi: 'द्विपक्षीय निष्पादन एवं क्रिप्टोग्राफ़िक साक्ष्य पूर्ण',
+              descriptionEn: 'Contract digitally executed via sovereign cryptographic signature and dual-key attestation.',
+              descriptionHi: 'अनुबंध संप्रभु डिजिटल कुंजी एवं द्विपक्षीय साक्ष्य द्वारा निष्पादित।',
               actor: 'PAKT Execution Gateway',
               eventType: 'signature',
             });
@@ -221,7 +223,7 @@ export default function App() {
               titleHi: 'पॉलीगॉन पीओएस L2 ब्लॉकचेन पर एंकरिंग',
               descriptionEn: `Canonical hash anchored at Block ${simulatedBlock} with zero gas sponsorship.`,
               descriptionHi: `कैनोनिकल हैश ब्लॉक ${simulatedBlock} पर सुरक्षित रूप से एंकर हुआ।`,
-              actor: 'PAKT Mumbai L2 Relayer',
+              actor: 'PAKT Sovereign L2 Relayer',
               eventType: 'hash_anchor',
               txHash: simulatedTx,
               blockNumber: simulatedBlock,
@@ -233,8 +235,8 @@ export default function App() {
             timestamp,
             titleEn: 'Archived into Permanent Legal Vault',
             titleHi: 'स्थायी विधिक वॉल्ट में सुरक्षित रूप से संग्रहित',
-            descriptionEn: `Contract archived in sovereign cold-storage with Section 65B Certificate ${newCertId}.`,
-            descriptionHi: `धारा ६५ख प्रमाण पत्र ${newCertId} के साथ वॉल्ट में स्थायी रूप से संग्रहित।`,
+            descriptionEn: `Contract archived in sovereign cold-storage with Cryptographic Audit Certificate ${newCertId}.`,
+            descriptionHi: `ऑडिट प्रमाण पत्र ${newCertId} के साथ वॉल्ट में स्थायी रूप से संग्रहित।`,
             actor: 'PAKT Storage Vault Daemon',
             eventType: 'vault_storage',
             metadata: { vaultId: vaultArchiveId, certId: newCertId },
@@ -330,11 +332,13 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const isAuthScreen = currentScreen === 'landing' || currentScreen === 'login' || currentScreen === 'signup' || currentScreen === 'feature-building';
+
   return (
     <LoadingProvider lang={lang}>
       <div className="min-h-screen bg-[#f7f9fb] text-[#191c1e] font-sans antialiased flex flex-col selection:bg-[#ffdbd1] selection:text-[#3b0a00]">
-        {/* Top Application Header (Hidden on welcome splash for full immersion, visible on all other screens) */}
-        {currentScreen !== 'landing' && (
+        {/* Top Application Header (Hidden on auth and landing pages) */}
+        {!isAuthScreen && currentScreen !== '2fa' && (
           <Header
             currentScreen={currentScreen}
             onNavigate={handleNavigate}
@@ -346,20 +350,32 @@ export default function App() {
           />
         )}
 
-        {/* Screen Quick Selector floating widget for fast testing across all 8 views */}
-        <QuickScreenSelector
-          currentScreen={currentScreen}
-          onNavigate={handleNavigate}
-          lang={lang}
-        />
+        {/* Screen Quick Selector widget (Hidden on auth and landing pages) */}
+        {!isAuthScreen && (
+          <QuickScreenSelector
+            currentScreen={currentScreen}
+            onNavigate={handleNavigate}
+            lang={lang}
+          />
+        )}
 
         {/* Main Screen Container */}
-        <main className={`flex-1 flex flex-col ${currentScreen !== 'landing' ? 'pt-16' : ''}`}>
+        <main className={`flex-1 flex flex-col ${!isAuthScreen && currentScreen !== '2fa' ? 'pt-16' : ''}`}>
           {currentScreen === 'landing' && (
             <LandingScreen onNavigate={handleNavigate} lang={lang} />
           )}
           {currentScreen === 'login' && (
             <LoginScreen onNavigate={handleNavigate} lang={lang} />
+          )}
+          {currentScreen === 'signup' && (
+            <SignUpScreen
+              onNavigate={handleNavigate}
+              lang={lang}
+              onProfileUpdated={handleUpdateUserProfile}
+            />
+          )}
+          {currentScreen === 'feature-building' && (
+            <FeatureBuildingScreen onNavigate={handleNavigate} lang={lang} />
           )}
           {currentScreen === '2fa' && (
             <TwoFactorScreen onNavigate={handleNavigate} lang={lang} />
@@ -457,7 +473,7 @@ export default function App() {
         </main>
 
         {/* Bottom Sticky Navigation Dock (Shown for app dashboard screens) */}
-        {currentScreen !== 'landing' && currentScreen !== 'login' && currentScreen !== '2fa' && (
+        {!isAuthScreen && currentScreen !== '2fa' && (
           <BottomNav
             currentScreen={currentScreen}
             onNavigate={handleNavigate}

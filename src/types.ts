@@ -1,6 +1,8 @@
 export type ScreenType = 
   | 'landing' 
   | 'login' 
+  | 'signup'
+  | 'feature-building'
   | '2fa' 
   | 'contracts' 
   | 'esign' 
@@ -179,6 +181,7 @@ export interface AppNotification {
 
 export interface UserProfile {
   name: string;
+  fullName?: string;
   nameHindi: string;
   role: string;
   roleHindi: string;
@@ -210,5 +213,7 @@ export interface UserProfile {
   walletAddress?: string;
   syncedWithSupabase?: boolean;
   lastSyncedAt?: string;
+  isVerified?: boolean;
+  updatedAt?: string;
 }
 

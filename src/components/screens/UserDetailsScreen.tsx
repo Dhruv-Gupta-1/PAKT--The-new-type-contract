@@ -48,15 +48,15 @@ export const UserDetailsScreen: React.FC<UserDetailsScreenProps> = ({
   onProfileUpdated,
 }) => {
   const [formData, setFormData] = useState({
-    name: currentUserProfile?.name || 'Aarav Sharma',
-    email: currentUserProfile?.email || 'aarav.sharma@apexlegal.in',
-    phone: currentUserProfile?.phone || '+91 98201 54321',
-    entityType: currentUserProfile?.entityType || 'Private Limited (Pvt Ltd)',
-    organization: currentUserProfile?.organization || 'Apex Global Ventures Pvt. Ltd.',
-    idType: currentUserProfile?.idType || 'PAN',
-    idNumber: currentUserProfile?.idNumber || 'ABCDE1234F',
+    name: currentUserProfile?.name || 'Alexander Vance',
+    email: currentUserProfile?.email || 'alexander.vance@apexglobal.io',
+    phone: currentUserProfile?.phone || '+1 415 555 0192',
+    entityType: currentUserProfile?.entityType || 'Enterprise Entity (Corp/LLC)',
+    organization: currentUserProfile?.organization || 'Apex Global Ventures Ltd.',
+    idType: currentUserProfile?.idType || 'Tax ID',
+    idNumber: currentUserProfile?.idNumber || 'US-982410-X',
     role: currentUserProfile?.role || 'Director / Authorized Signatory',
-    location: currentUserProfile?.location || 'Mumbai, Maharashtra, India',
+    location: currentUserProfile?.location || 'San Francisco, CA, USA',
     walletAddress: currentUserProfile?.walletAddress || '',
   });
 
@@ -239,13 +239,13 @@ export const UserDetailsScreen: React.FC<UserDetailsScreenProps> = ({
       githubHandle: currentUserProfile?.githubHandle || 'aarav-pakt',
       telegramHandle: currentUserProfile?.telegramHandle || '@aarav_legal',
       web3Ens: metaMaskState.address ? `${metaMaskState.address.slice(0, 6)}...eth` : 'aarav.eth',
-      didIdentifier: `did:pakt:in-mum-1:${formData.idNumber || 'AUTH'}`,
-      aadhaarMasked: formData.idType === 'Aadhaar' ? formData.idNumber : 'XXXX-XXXX-4819',
-      panMasked: formData.idType === 'PAN' ? formData.idNumber : 'ABCDE1234F',
+      didIdentifier: `did:pakt:global:${formData.idNumber || 'AUTH'}`,
+      aadhaarMasked: formData.idType === 'National ID' ? formData.idNumber : 'XXXX-XXXX-4819',
+      panMasked: formData.idType === 'Tax ID' ? formData.idNumber : 'ABCDE1234F',
       dinNumber: 'DIN-09823412',
       avatarUrl: currentUserProfile?.avatarUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80',
       kycLevel: 'Tier 3 (Government ID & Sepolia On-Chain Bound)',
-      jurisdiction: 'Mumbai, Maharashtra, Republic of India',
+      jurisdiction: formData.location || 'Global Commercial Arbitration Jurisdiction',
       entityType: formData.entityType,
       idType: formData.idType,
       idNumber: formData.idNumber,
@@ -553,12 +553,10 @@ export const UserDetailsScreen: React.FC<UserDetailsScreenProps> = ({
                     onChange={e => setFormData({ ...formData, idType: e.target.value })}
                     className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-500 transition"
                   >
-                    <option value="PAN">PAN (Permanent Account Number)</option>
-                    <option value="GSTIN">GSTIN (Goods & Services Tax ID)</option>
-                    <option value="Aadhaar">Aadhaar (UIDAI Masked)</option>
-                    <option value="Passport">Passport Number</option>
-                    <option value="CIN">Corporate Identification Number (CIN)</option>
-                    <option value="National ID">National Tax ID / Social ID</option>
+                    <option value="Tax ID">Tax ID / EIN / VAT Number</option>
+                    <option value="National ID">National Identity Card / Social ID</option>
+                    <option value="Passport">Passport Document Number</option>
+                    <option value="Commercial Register">Commercial Registry / Incorporation Number</option>
                   </select>
                 </div>
 
@@ -571,7 +569,7 @@ export const UserDetailsScreen: React.FC<UserDetailsScreenProps> = ({
                     value={formData.idNumber}
                     onChange={e => setFormData({ ...formData, idNumber: e.target.value })}
                     className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-cyan-500 transition uppercase"
-                    placeholder="ABCDE1234F"
+                    placeholder="US-982410-X"
                   />
                 </div>
 
@@ -584,7 +582,7 @@ export const UserDetailsScreen: React.FC<UserDetailsScreenProps> = ({
                     value={formData.location}
                     onChange={e => setFormData({ ...formData, location: e.target.value })}
                     className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-500 transition"
-                    placeholder="Mumbai, Maharashtra, Republic of India"
+                    placeholder="San Francisco, CA, USA"
                   />
                 </div>
               </div>
